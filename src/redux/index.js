@@ -1,11 +1,19 @@
 import {
     init,
     getProducts,
-    getProductsDone
+    getProductsDone,
+    getCategories,
+    getCategoriesDone,
+    getProductsByCategory,
+    getProductsByCategoryDone
 } from "./actions";
 
 export const allActions ={
     init,
     getProducts,
-    getProductsDone
+    getProductsDone,
+    getCategories,
+    getCategoriesDone,
+    getProductsByCategory,
+    getProductsByCategoryDone
 };

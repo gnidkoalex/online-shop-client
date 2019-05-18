@@ -11,6 +11,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Header from "./components/header";
+import Cart from "./components/productList"
 
 
 
@@ -32,6 +33,7 @@ class App extends Component {
   }
   componentDidMount() {
     this.props.actions.getProducts();
+    this.props.actions.getCategories();
   }
   componentDidUpdate() {
     console.log(this.props.products);
@@ -45,12 +47,13 @@ class App extends Component {
         <div className="App">
           <Grid container spacing={24}>
             <Grid item xs={3}>
-              <Paper className={classes.paper}><ProductsComponent /></Paper>
+              <Paper className={classes.paper}><Cart/></Paper>
             </Grid>
             <Grid item xs={9}>
               <Paper className={classes.paper}><Header /><Switch>
-            <Route key="Drinks" path="/Drinks" component={ProductsComponent} />
-            <Route key="Meat and fish" path="/Meat and fish" component={ProductsComponent} />
+            <Route  path="/:name" component={ProductsComponent} />
+          
+
 
           </Switch></Paper>
             </Grid>
@@ -74,7 +77,8 @@ function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(
       {
-        getProducts: allActions.getProducts
+        getProducts: allActions.getProducts,
+        getCategories: allActions.getCategories
 
       },
       dispatch

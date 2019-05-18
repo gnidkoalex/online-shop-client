@@ -16,6 +16,25 @@ export default function reducers (state={},action){
                 products:products,
             }
         }
+
+        case ACTIONS.GET_CATEGORIES_DONE:{
+            let categories =action.categories;
+           
+
+            return{
+                ...state,
+                categories:categories,
+            }
+        }
+        case ACTIONS.GET_PRODUCTS_BY_CATEGORY_DONE:{
+            let productsByCategory =action.productsByCategory;
+           
+
+            return{
+                ...state,
+                productsByCategory:productsByCategory,
+            }
+        }
             
             
     
