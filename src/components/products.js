@@ -4,44 +4,34 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { allActions } from '../redux/index';
 import 'bootstrap/dist/css/bootstrap.css';
-
+import Product from "../components/product"
 // matireal ui 
-import Modal from '@material-ui/core/Modal';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
+import PropTypes from 'prop-types';
 import { withStyles } from "@material-ui/core/styles";
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import TextField from "@material-ui/core/TextField";
 
 
 
-const styles = theme => ({
-  textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-    width: 200,
-  },
+const styles = {
   card: {
-    minWidth: 275
+    maxWidth: 230,
+    minWidth: 230,
   },
-  bullet: {
-    display: "inline-block",
-    margin: "0 2px",
-    transform: "scale(0.8)"
+  media: {
+    height: 140,
   },
-  title: {
-    fontSize: 14
-  },
-  pos: {
-    marginBottom: 12
-  },
-  paper: {
-    position: 'absolute',
-    width: theme.spacing.unit * 50,
-    backgroundColor: theme.palette.background.paper,
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing.unit * 4,
-    outline: 'none',
-  },
-});
+  textField: {
+
+    maxWidth: 60,
+  }
+};
 
 
 class Products extends Component {
@@ -49,18 +39,15 @@ class Products extends Component {
     super(props);
     this.state = {
       // categoryName: this.props.match.params.name,
-      categoryName: "meat and fish"
-
-
+      categoryName: "somthing",
+      // productAmount: 1,
+      // currProduct:{}
 
     };
 
   }
 
   componentDidMount() {
-
-
-
 
   }
 
@@ -93,12 +80,24 @@ class Products extends Component {
     }
 
   }
+  // handleAmountChange = e => {
+  //   let amount = e.target.value
+  //   console.log(e)
+  //   this.setState(prevState => ({
+  //     productAmount:amount
+    
+      
+  //   }));
+
+  // }
+  
+ 
 
 
 
 
   render() {
-
+    const { classes } = this.props;
 
     return (
       <div className="container">
@@ -106,28 +105,10 @@ class Products extends Component {
         <div className="row">
           {this.props.productsByCategory.map((product, index) => {
             return (
-              <div
-                key={index}
-                style={{ display: "inline", margin: "0px" }}
-                className="col-3"
-              >
-                <div
-                  style={{
-                    border: "1px solid grey",
-                    borderRadius: "10px",
-                    height: "150px",
-                    // boxShadow: "5px 5px",
-                    position: "relative"
-                  }}
-                >
-                  <div>
-                    <div>{product.productName}  </div>
-                    <div>{product.price+"₪"}  </div>
-                    <div>{product.image}  </div>
-                  </div>
-                </div>
+              <div>
+                <Product name={product.productName}price={product.price} id={product._id}/>
               </div>
-
+            
             )
           })}
         </div>
@@ -149,7 +130,7 @@ function mapDispatchToProps(dispatch) {
       {
         getProducts: allActions.getProducts,
         getCategories: allActions.getCategories,
-        getProductsByCategory: allActions.getProductsByCategory
+        getProductsByCategory: allActions.getProductsByCategory,
 
       },
       dispatch

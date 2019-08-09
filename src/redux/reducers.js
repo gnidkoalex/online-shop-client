@@ -35,6 +35,33 @@ export default function reducers (state={},action){
                 productsByCategory:productsByCategory,
             }
         }
+        case ACTIONS.GET_PRODUCTS_BY_CATEGORY_DONE:{
+            let productsByCategory =action.productsByCategory;
+           
+
+            return{
+                ...state,
+                productsByCategory:productsByCategory,
+            }
+        }
+        case ACTIONS.ADD_TO_CART_DONE:{
+            let product =action.product;
+           
+
+            return{
+                ...state,
+                cart:product,
+            }
+        }
+        case ACTIONS.USER_LOGIN_DONE:{
+            let logedInUser =action.data;
+           
+
+            return{
+                ...state,
+                logedInUser:logedInUser,
+            }
+        }
             
             
     

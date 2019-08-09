@@ -5,7 +5,11 @@ import {
     getCategories,
     getCategoriesDone,
     getProductsByCategory,
-    getProductsByCategoryDone
+    getProductsByCategoryDone,
+    addToCart,
+    addToCartDone,
+    userLogin,
+    userLoginDone,
 } from "./actions";
 
 export const allActions ={
@@ -15,5 +19,10 @@ export const allActions ={
     getCategories,
     getCategoriesDone,
     getProductsByCategory,
-    getProductsByCategoryDone
+    getProductsByCategoryDone,
+    addToCart,
+    addToCartDone,
+    userLogin,
+    userLoginDone,
+
 };

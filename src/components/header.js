@@ -6,6 +6,7 @@ import { MenuItem, Navbar, Nav, NavItem } from "react-bootstrap";
 import { withStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 import { isPromiseAlike } from "q";
+import Login from "./login"
 
 const styles = theme => ({
   container: {
@@ -43,6 +44,7 @@ class Header extends Component {
     // });
     
   }
+  
 
   render() {
 
@@ -67,7 +69,11 @@ class Header extends Component {
             <Navbar.Brand>
               <Link to="/Vegetables and fruits"> Vegetables and fruits </Link>
             </Navbar.Brand> 
+            <Navbar.Brand>
+              <Link to="/login"> login </Link>
+            </Navbar.Brand> 
         </Navbar>
+        
       </div>
     );
   }

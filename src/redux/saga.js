@@ -4,8 +4,10 @@ import { all } from "redux-saga/effects";
 import{getProductsService} from "./services";
 import{getCategoriesService} from "./services";
 import{getProductsByCategoryService} from "./services";
+import{addToCartService} from "./services";
 import {allActions} from "./index";
 import {ACTIONS} from "./action.config";
+import {userLoginService} from "./services";
 // import { getCategories } from "./actions";
 
 function* getProducts(){
@@ -26,11 +28,32 @@ function* getProductsByCategory(action){
     }
 
 }
+
 function* getCategories(){
     try{
         const categories =yield call(getCategoriesService); // after the getProductsService "," and your payload
         yield put(allActions.getCategoriesDone(categories));
     }catch(ex){
+
+    }
+
+}
+function* addToCart(action){
+    try{
+        const productTocart =yield call(addToCartService,action); // after the getProductsService "," and your payload
+        yield put(allActions.addToCartDone(productTocart));
+    }catch(ex){
+
+    }
+
+}
+function* userLogin(action){
+    
+    try{
+        const user =yield call(userLoginService,action); // after the getProductsService "," and your payload
+        yield put(allActions.userLoginDone(user));
+    }catch(ex){
+        alert("user name and password doenst match")
 
     }
 
@@ -50,9 +73,19 @@ function* GetProductsByCategory(){
     
 
 }
+function* AddToCart(){
+    yield takeEvery(ACTIONS.ADD_TO_CART,addToCart)
+    
+
+}
+function* UserLogin(){
+    yield takeEvery(ACTIONS.USER_LOGIN,userLogin)
+    
+
+}
 
 function* rootSaga(){
-    yield all([fork(GetProducts),fork(GetCategories),fork(GetProductsByCategory)]);
+    yield all([fork(GetProducts),fork(GetCategories),fork(GetProductsByCategory),fork(AddToCart),fork(UserLogin)]);
 }
 
 export default rootSaga;

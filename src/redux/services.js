@@ -47,3 +47,34 @@ export const getProductsByCategoryService = async (category)=>{
     });
 
 }
+export const addToCartService = async (product)=>{
+    return product
+    // return new Promise ((resolve, reject)=>{
+    //     axios.get(`${mainUrl}products/${category}`)
+    //     .then((response)=>{
+    //         resolve(response.data);
+    //     })
+    //     .catch(err =>{
+    //         reject(err);
+
+    //     });
+    // });
+
+}
+
+export const userLoginService = async (data)=>{
+    
+    return new Promise ((resolve, reject)=>{
+        axios.post(`${mainUrl}users/login`,{data})
+        .then((response)=>{
+            console.log(response)
+            resolve(response.data);
+        })
+        .catch(err =>{
+            
+            reject(err);
+
+        });
+    });
+
+}
