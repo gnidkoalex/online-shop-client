@@ -19,8 +19,9 @@ import TextField from "@material-ui/core/TextField";
 
 const styles = {
   card: {
-    maxWidth: 230,
-    minWidth: 230,
+    maxWidth: 250,
+    minWidth: 100,
+   
   },
   media: {
     height: 140,
@@ -33,36 +34,34 @@ const styles = {
 
 
 
-class Product extends Component {
+class CartItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      productAmount: 1,
-      currProduct:{}
-
+     
     };
   }
-  componentWillReceiveProps(nextProps){
-    console.log("im next props")
-    console.log(nextProps)
+//   componentWillReceiveProps(nextProps){
+//     console.log("im next props")
+//     console.log(nextProps)
     
-  }
+//   }
   componentDidMount() {
 
   }
   componentDidUpdate(){
    
   }
-  handleAmountChange = e => {
-    let amount = e.target.value
-    this.setState(prevState => ({
-      productAmount:amount
+//   handleAmountChange = e => {
+//     let amount = e.target.value
+//     this.setState(prevState => ({
+//       productAmount:amount
 
     
       
-    }));
+//     }));
 
-  }
+//   }
   // addToCart=(id,amount)=>{
   //   if(amount>=1){
       
@@ -78,54 +77,41 @@ class Product extends Component {
         <div>
              <Card className={classes.card}>
                 <CardActionArea>
-                  <CardMedia
+                  {/* <CardMedia
                     className={classes.media}
                     image="C:/Users/ASUS/Desktop/pics/bannana.jpg"
                     title="bannana"
 
 
-                  />
+                  /> */}
                   <CardContent>
-                    <Typography gutterBottom variant="h4" component="h2">
-                      {this.props.name}
+                    <Typography component="p">
+                      {this.props.id}
                     </Typography>
                     <Typography component="p">
-                      {this.props.price + "₪"}
+                      {this.props.amount}
                     </Typography>
+                    <Button size="small" color="primary" onClick={()=>{
+                        console.log(this.props.id)
+                        console.log(this.props.logedInUser.cartId)
+                        this.props.actions.delCartItem(this.props.logedInUser.cartId,this.props.id)
+                        
+                    // if(this.state.productAmount>=1){
+                      
+                    //   this.props.actions.addToCart(this.props.id,this.state.productAmount,this.props.logedInUser.cartId)
+                    // }else{
+                    //   alert("you must have at least one to add it")
+                    // }
+                    // this.addToCart(this.props.id,this.state.productAmount)
+                  }}>
+                  
+                    x
+                  </Button>
 
                   </CardContent>
                 </CardActionArea>
                 <CardActions>
-                  <div> amount : </div>
-                  <TextField
-                    id="amount"
-                    name="amount"
-                    type="number"
-                    className={classes.textField}
-                    // value={this.state.productAmount}
-                    // onChange={this.handleAmountChange}
-                    // onChange={this.handleInputChange}
-                    margin="normal"
-                    onClick={this.handleAmountChange}
-
-
-                  />
-                  <br />
-                  <br />
-                  <br />
-
-                  <Button size="small" color="primary" onClick={()=>{
-                    if(this.state.productAmount>=1){
-                      
-                      this.props.actions.addToCart(this.props.id,this.state.productAmount,this.props.logedInUser.cartId)
-                    }else{
-                      alert("you must have at least one to add it")
-                    }
-                    // this.addToCart(this.props.id,this.state.productAmount)
-                  }}>
                   
-                    add
-                  </Button>
                 </CardActions>
               </Card>
 
@@ -151,7 +137,8 @@ function mapDispatchToProps(dispatch) {
     actions: bindActionCreators(
       {
         // getProducts:allActions.getProducts
-        addToCart:allActions.addToCart
+        addToCart:allActions.addToCart,
+        delCartItem:allActions.delCartItem
 
       },
       dispatch
@@ -163,5 +150,5 @@ function mapDispatchToProps(dispatch) {
 export default withStyles(styles)(connect(
   mapStateToProps,
   mapDispatchToProps
-)(Product));
+)(CartItem));
 

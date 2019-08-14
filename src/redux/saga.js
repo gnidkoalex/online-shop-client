@@ -8,6 +8,8 @@ import{addToCartService} from "./services";
 import {allActions} from "./index";
 import {ACTIONS} from "./action.config";
 import {userLoginService} from "./services";
+import {getCartItemsService} from "./services";
+import {delCartItemService} from "./services";
 // import { getCategories } from "./actions";
 
 function* getProducts(){
@@ -58,6 +60,24 @@ function* userLogin(action){
     }
 
 }
+function* getCartItems(action){
+    try{
+        const cartItems =yield call(getCartItemsService,action); // after the getProductsService "," and your payload
+        yield put(allActions.getCartItemsDone(cartItems));
+    }catch(ex){
+
+    }
+
+}
+function* delCartItem(action){
+    try{
+        const cartItems =yield call(delCartItemService,action); // after the getProductsService "," and your payload
+        yield put(allActions.delCartItemDone(cartItems));
+    }catch(ex){
+
+    }
+
+}
 
 function* GetCategories(){
     yield takeEvery(ACTIONS.GET_CATEGORIES,getCategories)
@@ -83,9 +103,17 @@ function* UserLogin(){
     
 
 }
+function* GetCartItems(){
+    yield takeEvery(ACTIONS.GET_CART_ITEMS,getCartItems)
+
+}
+function* DelCartItem(){
+    yield takeEvery(ACTIONS.DEL_CART_ITEM,delCartItem)
+
+}
 
 function* rootSaga(){
-    yield all([fork(GetProducts),fork(GetCategories),fork(GetProductsByCategory),fork(AddToCart),fork(UserLogin)]);
+    yield all([fork(GetProducts),fork(GetCategories),fork(GetProductsByCategory),fork(AddToCart),fork(UserLogin),fork(GetCartItems),fork(DelCartItem)]);
 }
 
 export default rootSaga;

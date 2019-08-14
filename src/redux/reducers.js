@@ -62,6 +62,15 @@ export default function reducers (state={},action){
                 logedInUser:logedInUser,
             }
         }
+        case ACTIONS.GET_CART_ITEMS_DONE:{
+            let cartItems =action.data;
+           
+
+            return{
+                ...state,
+                cartItems:cartItems,
+            }
+        }
             
             
     

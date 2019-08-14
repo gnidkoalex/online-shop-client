@@ -48,18 +48,19 @@ class App extends Component {
         <div className="App">
           <Grid container spacing={24}>
             <Grid item xs={3}>
-              <Paper className={classes.paper}><Cart/></Paper>
+              <Paper className={classes.paper}><Cart /></Paper>
             </Grid>
             <Grid item xs={9}>
-              <Paper className={classes.paper}><Header /><Switch>
-              <Route  path="/login" component={LoginComponent} />
-            <Route  path="/:name" component={ProductsComponent} />
-            
-          </Switch></Paper>
+              <Paper className={classes.paper}><Header />
+                <Switch>
+                  <Route path="/login" component={LoginComponent} />
+                  <Route path="/:name" component={ProductsComponent} />
+
+                </Switch></Paper>
             </Grid>
           </Grid>
-         
-          
+
+
 
 
 

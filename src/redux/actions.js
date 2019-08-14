@@ -45,10 +45,11 @@ export const getProductsByCategoryDone = (productsByCategory) => {
     }
 }
 
-export const addToCart = (id, amount) => {
+export const addToCart = (productId, amount,cartId) => {
     let currProduct = {}
-    currProduct.id = id;
+    currProduct.productId = productId;
     currProduct.amount = amount;
+    currProduct.cartId=cartId;
     return {
         type: ACTIONS.ADD_TO_CART,
         currProduct
@@ -64,7 +65,6 @@ export const addToCartDone = (product) => {
 }
 
 export const userLogin = (userName,password) => {
-console.log(password)
     let user = {}
     user.userName = userName;
     user.password = password;
@@ -76,6 +76,37 @@ console.log(password)
 export const userLoginDone = (data) => {
     return {
         type: ACTIONS.USER_LOGIN_DONE,
+        data
+    }
+}
+
+export const getCartItems = (cartId) => {
+    return {
+        type: ACTIONS.GET_CART_ITEMS,
+        cartId
+    }
+}
+export const getCartItemsDone = (data) => {
+    console.log("inside  done")
+    console.log(data)
+    return {
+        type: ACTIONS.GET_CART_ITEMS_DONE,
+        data
+    }
+}
+
+export const delCartItem = (cartId,productId) => {
+    let data={};
+    data.cartId=cartId
+    data.productId=productId
+    return {
+        type: ACTIONS.DEL_CART_ITEM,
+        data
+    }
+}
+export const delCartItemDone = (data) => {
+    return {
+        type: ACTIONS.DEL_CART_ITEM_DONE,
         data
     }
 }

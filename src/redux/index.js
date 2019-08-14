@@ -10,6 +10,10 @@ import {
     addToCartDone,
     userLogin,
     userLoginDone,
+    getCartItems,
+    getCartItemsDone,
+    delCartItem,
+    delCartItemDone,
 } from "./actions";
 
 export const allActions ={
@@ -24,5 +28,9 @@ export const allActions ={
     addToCartDone,
     userLogin,
     userLoginDone,
+    getCartItems,
+    getCartItemsDone,
+    delCartItem,
+    delCartItemDone,
 
 };
