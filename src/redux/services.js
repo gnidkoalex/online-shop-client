@@ -73,8 +73,15 @@ export const userLoginService = async (data) => {
                         currUser.name = response.data.name
                         currUser.userId = response.data.userId
                         currUser._id = response.data._id
+                        currUser.session=response.data.session
+
+                        localStorage.setItem("session",currUser.session);
+                        localStorage.setItem("user",JSON.stringify(currUser));
+                      
+                    
                         if (response2.data[0]) {
                             currUser.cartId = response2.data[0]._id
+
                             resolve(currUser);
                         } else {
                             axios.post(`${mainUrl}cart/create`, { customerId })

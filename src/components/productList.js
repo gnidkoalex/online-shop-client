@@ -21,16 +21,17 @@ class ProductList extends Component {
     // console.log(this.props.state)
 
     // this.handleCartItems()
-    if (this.props.logedInUser.cartId) {
-      console.log(this.props.logedInUser.cartId)
-      this.props.actions.getCartItems(this.props.logedInUser.cartId)
-    }
+    
+      // this.props.actions.getCartItems(this.props.logedInUser.cartId)
+    
+    
 
   }
   componentWillReceiveProps(nextProps) {
-    this.setState({
-      cartItemTry:nextProps.cartItems
-    })
+    // this.handleCartItems(nextProps)
+    // this.setState({
+    //   cartItemTry:nextProps.cartItems
+    // })
     // if(nextProps.cartItems.length>0){
     //   let total=0
     //   nextProps.cartItems.map((item) => {
@@ -47,6 +48,8 @@ class ProductList extends Component {
    
   }
   componentDidUpdate() {
+  
+    
     
   }
   handleCartItems = () => {
@@ -56,12 +59,12 @@ class ProductList extends Component {
     }
 
   }
-  updateTotalPrice=(cartItem)=>{
-    this.setState({
-      totalCartPrice:cartItem
-      });
+  // updateTotalPrice=(cartItem)=>{
+  //   this.setState({
+  //     totalCartPrice:cartItem
+  //     });
 
-  }
+  // }
 
 
   render() {

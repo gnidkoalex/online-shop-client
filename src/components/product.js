@@ -38,15 +38,20 @@ class Product extends Component {
     super(props);
     this.state = {
       productAmount: 1,
-      currProduct:{}
+      currProduct:{},
+      cartItemsTry:[],
 
     };
   }
-  componentWillReceiveProps(nextProps){
-    console.log("im next props")
-    console.log(nextProps)
+  // componentWillReceiveProps(nextProps){
+  //   console.log("im next props")
+  //   console.log(nextProps)
+  //   this.setState({
+  //     cartItemsTry:nextProps.cartItems
+
+  //   })
     
-  }
+  // }
   componentDidMount() {
 
   }
@@ -140,7 +145,8 @@ class Product extends Component {
 }
 function mapStateToProps(state) {
   return {
-    logedInUser:state.logedInUser||{}
+    logedInUser:state.logedInUser||{},
+    cartItems: state.cartItems || [],
 
   }
 }

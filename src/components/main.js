@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+
+// import './App.css';
 import { BrowserRouter, Link, Switch, Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { allActions } from './redux';
-import ProductsComponent from "./components/products"
+import { allActions } from '../redux';
+import ProductsComponent from "./products"
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import Header from "./components/header";
-import Cart from "./components/productlist";
-import LoginComponent from "./components/login";
-import MainComponent from "./components/main";
+import Header from "./header";
+import Cart from "./productlist";
+import LoginComponent from "./login";
 
 
 
@@ -29,18 +28,18 @@ const styles = theme => ({
 });
 
 
-class App extends Component {
+class Main extends Component {
   constructor(props) {
     super(props);
   }
   componentDidMount() {
-    // this.props.actions.getProducts();
-    // this.props.actions.getCategories();
     if(localStorage.getItem("session")){
-      //verify
-    }else{
-      
+        console.log("no push")
     }
+    else{console.log("pushhhh")
+this.props.history.push("/")}
+    this.props.actions.getProducts();
+    this.props.actions.getCategories();
   }
   componentDidUpdate() {
     console.log(this.props.products);
@@ -50,23 +49,38 @@ class App extends Component {
     const { classes } = this.props;
     
     return (
+        
       <BrowserRouter>
 
         <div className="App">
-          <Switch>
+            {/* {!this.props.logedInUser&&this.props.history.push("/")} */}
+          <Grid container spacing={24}>
+            <Grid item xs={3}>
+              <Paper className={classes.paper}><Cart /></Paper>
+            </Grid>
+            <Grid item xs={9}>
+              <Paper className={classes.paper}><Header />
+                <Switch>
+                  
+                  <Route path="/main/:name" component={ProductsComponent} />
 
-          <Route exact path="/" component={LoginComponent} />
-          <Route  path="/main" component={MainComponent} />
-          </Switch>
+                </Switch></Paper>
+            </Grid>
+          </Grid>
+
+
+
+
 
         </div>
       </BrowserRouter>
-      
     );
   }
 }
 function mapStateToProps(state) {
+    
   return {
+      logedInUser:state.logedInUser||{}
 
   }
 }
@@ -84,12 +98,12 @@ function mapDispatchToProps(dispatch) {
   };
 
 }
-App.propTypes = {
+Main.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 export default withStyles(styles)(connect(
   mapStateToProps,
   mapDispatchToProps
-)(App));
+)(Main));
 
 

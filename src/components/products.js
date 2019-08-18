@@ -119,7 +119,8 @@ class Products extends Component {
 function mapStateToProps(state) {
   return {
     categories: state.categories || [],
-    productsByCategory: state.productsByCategory || []
+    productsByCategory: state.productsByCategory || [],
+    logedInUser:state.logedInUser||{}
 
   }
 }

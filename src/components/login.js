@@ -81,14 +81,15 @@ class Login extends Component {
         
                         <Button size="small" color="primary" onClick={()=>{
                     if(this.state.userName&&this.state.password){
-                      this.props.actions.userLogin(this.state.userName,this.state.password)
+                      this.props.actions.userLogin(this.state.userName,this.state.password);
+                      this.props.history.push("/main")
                     }else{
                       alert("missing params")
                     }
                     
                   }}>
                   
-                    add
+                    Log in
                   </Button>
 
 
@@ -105,7 +106,7 @@ class Login extends Component {
 }
 function mapStateToProps(state) {
     return {
-
+        logedInUser:state.logedInUser||{}
     }
 }
 

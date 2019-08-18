@@ -55,23 +55,21 @@ class Header extends Component {
         <Navbar>
           {/* <Navbar.Header> */}
             <Navbar.Brand>
-            <Link to="/Meat and fish"> Meat and fish</Link>
+            <Link to="/main/Meat and fish"> Meat and fish</Link>
             </Navbar.Brand>
             &nbsp; | &nbsp; 
             <Navbar.Brand>
-              <Link to="/Drinks"> Drinks </Link>
+              <Link to="/main/Drinks"> Drinks </Link>
             </Navbar.Brand>  
             &nbsp; | &nbsp;
             <Navbar.Brand>
-              <Link to="/Milk and eggs"> Milk and eggs </Link>
+              <Link to="/main/Milk and eggs"> Milk and eggs </Link>
             </Navbar.Brand>
             &nbsp; | &nbsp;
             <Navbar.Brand>
-              <Link to="/Vegetables and fruits"> Vegetables and fruits </Link>
+              <Link to="/main/Vegetables and fruits"> Vegetables and fruits </Link>
             </Navbar.Brand> 
-            <Navbar.Brand>
-              <Link to="/login"> login </Link>
-            </Navbar.Brand> 
+           
         </Navbar>
         
       </div>
@@ -82,7 +80,7 @@ class Header extends Component {
 function mapStateToProps(state) {
 
   return {
- 
+    logedInUser:state.logedInUser||{}
 
   };
 }
