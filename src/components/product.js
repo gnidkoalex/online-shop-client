@@ -68,13 +68,11 @@ class Product extends Component {
     }));
 
   }
-  // addToCart=(id,amount)=>{
-  //   if(amount>=1){
-      
-  //   }
-      
-
-  // }
+  addItemToCart= async ()=>{
+    let a= await  this.props.actions.addToCart(this.props.id,this.state.productAmount,this.props.logedInUser.cartId)
+    let b= await this.props.actions.getCartItems(this.props.logedInUser.cartId)
+    this.props.actions.getCartItems(this.props.logedInUser.cartId)
+  }
 
   render() {
     const { classes } = this.props;
@@ -121,8 +119,8 @@ class Product extends Component {
 
                   <Button size="small" color="primary" onClick={()=>{
                     if(this.state.productAmount>=1){
-                      
-                      this.props.actions.addToCart(this.props.id,this.state.productAmount,this.props.logedInUser.cartId)
+                      this.addItemToCart()
+                     
                     }else{
                       alert("you must have at least one to add it")
                     }
@@ -157,7 +155,8 @@ function mapDispatchToProps(dispatch) {
     actions: bindActionCreators(
       {
         // getProducts:allActions.getProducts
-        addToCart:allActions.addToCart
+        addToCart:allActions.addToCart,
+        getCartItems:allActions.getCartItems,
 
       },
       dispatch

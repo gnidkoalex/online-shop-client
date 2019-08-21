@@ -48,15 +48,15 @@ export const getProductsByCategoryService = async (category) => {
 
 }
 export const addToCartService = async (data) => {
-    return new Promise ((resolve, reject)=>{
-        axios.post(`${mainUrl}cart/addCartItem`,{data})
-        .then((response)=>{
-            resolve(response.data);
-        })
-        .catch(err =>{
-            reject(err);
+    return new Promise((resolve, reject) => {
+        axios.post(`${mainUrl}cart/addCartItem`, { data })
+            .then((response) => {
+                resolve(response.data);
+            })
+            .catch(err => {
+                reject(err);
 
-        });
+            });
     });
 
 }
@@ -73,12 +73,12 @@ export const userLoginService = async (data) => {
                         currUser.name = response.data.name
                         currUser.userId = response.data.userId
                         currUser._id = response.data._id
-                        currUser.session=response.data.session
+                        currUser.session = response.data.session
 
-                        localStorage.setItem("session",currUser.session);
-                        localStorage.setItem("user",JSON.stringify(currUser));
-                      
-                    
+                        localStorage.setItem("session", currUser.session);
+                        localStorage.setItem("user", JSON.stringify(currUser));
+
+
                         if (response2.data[0]) {
                             currUser.cartId = response2.data[0]._id
 
@@ -115,7 +115,7 @@ export const getCartItemsService = async (cartId) => {
 }
 export const delCartItemService = async (data) => {
     return new Promise((resolve, reject) => {
-        axios.post(`${mainUrl}cart/deleteCartItem`,{data})
+        axios.post(`${mainUrl}cart/deleteCartItem`, { data })
             .then((response) => {
                 resolve(response.data);
             })
@@ -126,3 +126,34 @@ export const delCartItemService = async (data) => {
     });
 
 }
+
+export const verifySessionService = async (data) => {
+    return new Promise((resolve, reject) => {
+        axios.post(`${mainUrl}users/verify`, { data })
+            .then((response) => {
+                console.log("im response")
+                console.log(response.data)
+                let currUser = {}
+                currUser.name = response.data.name
+                currUser.userId = response.data.userId
+                currUser._id = response.data._id
+                currUser.session = data.session
+                let customerId = response.data.userId
+
+                axios.post(`${mainUrl}cart/findCartByUser`, { customerId })
+                    .then((response2) => {
+                        console.log("im respone 2")
+                        console.log( response2.data[0]._id)
+                        currUser.cartId = response2.data[0]._id
+                        resolve(currUser);
+                    })
+
+            })
+            .catch(err => {
+                reject(err);
+
+            });
+    });
+
+}
+

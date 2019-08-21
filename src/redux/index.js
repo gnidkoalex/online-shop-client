@@ -14,6 +14,7 @@ import {
     getCartItemsDone,
     delCartItem,
     delCartItemDone,
+    verifySession,
 } from "./actions";
 
 export const allActions ={
@@ -32,5 +33,6 @@ export const allActions ={
     getCartItemsDone,
     delCartItem,
     delCartItemDone,
+    verifySession,
 
 };

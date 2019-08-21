@@ -110,3 +110,9 @@ export const delCartItemDone = (data) => {
         data
     }
 }
+export const verifySession=(session)=>{
+    return{
+        type:ACTIONS.VERIFY_SESSION,
+        session
+    }
+}

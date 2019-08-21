@@ -52,6 +52,10 @@ class CartItem extends Component {
   componentDidUpdate(){
    
   }
+  deleteItem= async ()=>{
+    let a= await this.props.actions.delCartItem(this.props.logedInUser.cartId,this.props.id);
+    let b= await this.props.actions.getCartItems(this.props.logedInUser.cartId)
+  }
 //   handleAmountChange = e => {
 //     let amount = e.target.value
 //     this.setState(prevState => ({
@@ -86,7 +90,7 @@ class CartItem extends Component {
                   /> */}
                   <CardContent>
                     <Typography component="p">
-                      {this.props.id}
+                      {this.props.id.productName}
                     </Typography>
                     <Typography component="p">
                       {this.props.amount}
@@ -94,7 +98,8 @@ class CartItem extends Component {
                     <Button size="small" color="primary" onClick={()=>{
                         console.log(this.props.id)
                         console.log(this.props.logedInUser.cartId)
-                        this.props.actions.delCartItem(this.props.logedInUser.cartId,this.props.id)
+                        // this.props.actions.delCartItem(this.props.logedInUser.cartId,this.props.id)
+                        this.deleteItem()
                         
                     // if(this.state.productAmount>=1){
                       
@@ -138,7 +143,8 @@ function mapDispatchToProps(dispatch) {
       {
         // getProducts:allActions.getProducts
         addToCart:allActions.addToCart,
-        delCartItem:allActions.delCartItem
+        delCartItem:allActions.delCartItem,
+        getCartItems:allActions.getCartItems
 
       },
       dispatch

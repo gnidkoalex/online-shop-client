@@ -10,6 +10,7 @@ import {ACTIONS} from "./action.config";
 import {userLoginService} from "./services";
 import {getCartItemsService} from "./services";
 import {delCartItemService} from "./services";
+import {verifySessionService} from "./services";
 // import { getCategories } from "./actions";
 
 function* getProducts(){
@@ -78,6 +79,15 @@ function* delCartItem(action){
     }
 
 }
+function* verifySession(action){
+    try{
+        const user =yield call(verifySessionService,action); // after the getProductsService "," and your payload
+        yield put(allActions.userLoginDone(user));
+    }catch(ex){
+
+    }
+
+}
 
 function* GetCategories(){
     yield takeEvery(ACTIONS.GET_CATEGORIES,getCategories)
@@ -111,9 +121,13 @@ function* DelCartItem(){
     yield takeEvery(ACTIONS.DEL_CART_ITEM,delCartItem)
 
 }
+function* VerifySession(){
+    yield takeEvery(ACTIONS.VERIFY_SESSION,verifySession)
+
+}
 
 function* rootSaga(){
-    yield all([fork(GetProducts),fork(GetCategories),fork(GetProductsByCategory),fork(AddToCart),fork(UserLogin),fork(GetCartItems),fork(DelCartItem)]);
+    yield all([fork(GetProducts),fork(GetCategories),fork(GetProductsByCategory),fork(AddToCart),fork(UserLogin),fork(GetCartItems),fork(DelCartItem),fork(VerifySession)]);
 }
 
 export default rootSaga;

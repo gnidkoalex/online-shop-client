@@ -120,7 +120,8 @@ function mapStateToProps(state) {
   return {
     categories: state.categories || [],
     productsByCategory: state.productsByCategory || [],
-    logedInUser:state.logedInUser||{}
+    logedInUser:state.logedInUser||{},
+    cartItems: state.cartItems || [],
 
   }
 }
@@ -132,6 +133,7 @@ function mapDispatchToProps(dispatch) {
         getProducts: allActions.getProducts,
         getCategories: allActions.getCategories,
         getProductsByCategory: allActions.getProductsByCategory,
+    
 
       },
       dispatch

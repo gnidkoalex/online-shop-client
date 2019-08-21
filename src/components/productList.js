@@ -11,54 +11,47 @@ class ProductList extends Component {
     super(props);
     this.state = {
       totalCartPrice:0,
-      cartItemTry:[],
+      cartItemTry:0
 
 
     }
   }
   componentDidMount() {
-    // this.props.actions.getCartItems()
-    // console.log(this.props.state)
+   
 
-    // this.handleCartItems()
+    this.handleInitialCartItems()
     
-      // this.props.actions.getCartItems(this.props.logedInUser.cartId)
+    
+
     
     
 
   }
   componentWillReceiveProps(nextProps) {
-    // this.handleCartItems(nextProps)
-    // this.setState({
-    //   cartItemTry:nextProps.cartItems
-    // })
-    // if(nextProps.cartItems.length>0){
-    //   let total=0
-    //   nextProps.cartItems.map((item) => {
-    //     total+=item.totalPrice
-    //   })
-    //   this.setState({
-    //   totalCartPrice:total
-    //   });
-     
-    // }
+    // console.log("next props hhh")
+    // console.log(nextProps.cartItems.length)
+    console.log(nextProps)
+    
 
-    // this.handleCartItems()
     
    
   }
   componentDidUpdate() {
+    
   
     
     
   }
-  handleCartItems = () => {
+  handleInitialCartItems = () => {
     if (this.props.logedInUser.cartId) {
       console.log(this.props.logedInUser.cartId)
       this.props.actions.getCartItems(this.props.logedInUser.cartId)
     }
 
   }
+  handleCartItems = (nextCartItems)=>{
+  }
+
   // updateTotalPrice=(cartItem)=>{
   //   this.setState({
   //     totalCartPrice:cartItem
@@ -78,7 +71,7 @@ class ProductList extends Component {
       <div>
         <h1>cart</h1>
         <button onClick={() => {
-          this.handleCartItems()
+          this.handleInitialCartItems()
         }}>get cart</button>
         {/* {console.log(this.props.logedInUser.cartId)} */}
         <div>
@@ -125,7 +118,8 @@ function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(
       {
-        getCartItems: allActions.getCartItems
+        getCartItems: allActions.getCartItems,
+        
 
       },
       dispatch
