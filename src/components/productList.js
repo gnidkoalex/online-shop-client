@@ -18,13 +18,7 @@ class ProductList extends Component {
   }
   componentDidMount() {
    
-
     this.handleInitialCartItems()
-    
-    
-
-    
-    
 
   }
   componentWillReceiveProps(nextProps) {

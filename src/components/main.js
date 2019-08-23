@@ -35,23 +35,15 @@ class Main extends Component {
 
 
   componentDidMount() {
-    let session= localStorage.getItem("session")
-    if (this.props.logedInUser.cartId) {   
+    let session = localStorage.getItem("session")
+    if (this.props.logedInUser.cartId) {
       this.props.actions.getProducts();
       this.props.actions.getCategories();
       console.log("both")
-    
-    }else if(session){
+
+    } else if (session) {
       console.log("only")
       this.afterRefresh(session)
-      this.props.actions.getCartItems(this.props.logedInUser.cartId)
-      
-
-        // this.props.actions.verifySession(session)
-        // this.props.actions.getProducts();
-        // this.props.actions.getCategories();
-        // this.props.actions.getCartItems(this.props.logedInUser.cartId)
-     //turn to async function 
     }
     else {
       console.log("none")
@@ -60,25 +52,26 @@ class Main extends Component {
 
   }
   componentDidUpdate() {
-    console.log(this.props.products);
-  }
-  afterRefresh=async(session)=>{
-    console.log("afterrefres")
-    let a= await this.props.actions.verifySession(session)
-    console.log("1")
-    let b= await this.props.actions.getProducts();
-    console.log("2")
-    let c= await this.props.actions.getCategories();
-    console.log("3")
-    let d= await this.props.actions.getCartItems(this.props.logedInUser.cartId)
-    console.log("4")
-    let s= await this.props.actions.getCartItems(this.props.logedInUser.cartId)
-    console.log("4")
-    
-    
 
   }
- 
+  afterRefresh = async (session) => {
+    this.props.actions.verifySession(session)
+    this.waitingForLogIn()
+
+
+  }
+  waitingForLogIn = () => {
+    setTimeout(() => {
+      if (this.props.logedInUser.cartId == undefined) {
+        this.waitingForLogIn()
+      } else {
+        this.props.actions.getCartItems(this.props.logedInUser.cartId)
+      }
+
+    }, 1000);
+
+  }
+
 
   render() {
     const { classes } = this.props;
@@ -127,8 +120,8 @@ function mapDispatchToProps(dispatch) {
         getProducts: allActions.getProducts,
         getCategories: allActions.getCategories,
         verifySession: allActions.verifySession,
-        getCartItems:allActions.getCartItems,
-        
+        getCartItems: allActions.getCartItems,
+
 
       },
       dispatch
@@ -143,5 +136,3 @@ export default withStyles(styles)(connect(
   mapStateToProps,
   mapDispatchToProps
 )(Main));
-
-

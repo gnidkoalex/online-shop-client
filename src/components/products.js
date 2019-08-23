@@ -54,6 +54,7 @@ class Products extends Component {
   componentWillReceiveProps(nextProps) {
 
     this.handeleCategoryChange(nextProps.match.params.name.toLowerCase())
+ 
     // this.getCategoryId(nextProps)
   }
 
