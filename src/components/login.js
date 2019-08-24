@@ -66,7 +66,7 @@ class Login extends Component {
             
 
                 <div className={classes.margin}>
-                    <Grid container spacing={1} alignItems="flex-end">
+                    <Grid container spacing={0} alignItems="flex-end">
                         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
         
         
@@ -79,7 +79,7 @@ class Login extends Component {
 
 
                     </Grid>
-                    <Grid container spacing={1} alignItems="flex-end">
+                    <Grid container spacing={0} alignItems="flex-end">
                         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                         &emsp;&emsp;&emsp;&emsp;

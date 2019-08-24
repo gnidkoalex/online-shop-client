@@ -24,7 +24,6 @@ class ProductList extends Component {
   componentWillReceiveProps(nextProps) {
     // console.log("next props hhh")
     // console.log(nextProps.cartItems.length)
-    console.log(nextProps)
     
 
     

@@ -31,6 +31,11 @@ const styles = theme => ({
 class Main extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      Refresh:0
+
+
+    };
   }
 
 
@@ -43,15 +48,23 @@ class Main extends Component {
 
     } else if (session) {
       console.log("only")
+      this.props.actions.getProducts();
+      this.props.actions.getCategories();
       this.afterRefresh(session)
     }
     else {
       console.log("none")
       this.props.history.push("/")
+      
     }
 
   }
   componentDidUpdate() {
+    let session = localStorage.getItem("session")
+    if(!session){
+      this.props.history.push("/")
+
+    }
 
   }
   afterRefresh = async (session) => {
@@ -71,6 +84,11 @@ class Main extends Component {
     }, 1000);
 
   }
+  goToLogin=()=>{
+      this.setState({
+        Refresh: 1
+      })
+  }
 
 
   render() {
@@ -87,10 +105,11 @@ class Main extends Component {
               <Paper className={classes.paper}><Cart /></Paper>
             </Grid>
             <Grid item xs={9}>
-              <Paper className={classes.paper}><Header />
+              <Paper className={classes.paper}><Header goToLogin={this.goToLogin} />
                 <Switch>
 
                   <Route path="/main/:name" component={ProductsComponent} />
+            
 
                 </Switch></Paper>
             </Grid>

@@ -15,6 +15,8 @@ import {
     delCartItem,
     delCartItemDone,
     verifySession,
+    logOut,
+    logOutDone,
 } from "./actions";
 
 export const allActions ={
@@ -34,5 +36,7 @@ export const allActions ={
     delCartItem,
     delCartItemDone,
     verifySession,
+    logOut,
+    logOutDone,
 
 };

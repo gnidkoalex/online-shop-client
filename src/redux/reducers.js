@@ -71,6 +71,18 @@ export default function reducers (state={},action){
                 cartItems:cartItems,
             }
         }
+        case ACTIONS.LOGOUT_DONE:{
+            localStorage.removeItem("session")
+            localStorage.removeItem("user")
+            
+            
+           
+           
+
+            return{
+                
+            }
+        }
             
             
     

@@ -32,6 +32,7 @@ const styles = theme => ({
 class App extends Component {
   constructor(props) {
     super(props);
+    
   }
   componentDidMount() {
     // this.props.actions.getProducts();
@@ -57,6 +58,7 @@ class App extends Component {
 
           <Route exact path="/" component={LoginComponent} />
           <Route  path="/main" component={MainComponent} />
+          
           </Switch>
 
         </div>

@@ -116,3 +116,16 @@ export const verifySession=(session)=>{
         session
     }
 }
+export const logOut=(session)=>{
+    console.log(session)
+    return{
+        type:ACTIONS.LOGOUT,
+        session
+    }
+}
+export const logOutDone = (data) => {
+    return {
+        type: ACTIONS.LOGOUT_DONE,
+        data
+    }
+}

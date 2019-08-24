@@ -11,6 +11,7 @@ import {userLoginService} from "./services";
 import {getCartItemsService} from "./services";
 import {delCartItemService} from "./services";
 import {verifySessionService} from "./services";
+import {logOutService} from "./services";
 // import { getCategories } from "./actions";
 
 function* getProducts(){
@@ -88,6 +89,15 @@ function* verifySession(action){
     }
 
 }
+function* logOut(action){
+    try{
+        const data =yield call(logOutService,action); // after the getProductsService "," and your payload
+        yield put(allActions.logOutDone(data));
+    }catch(ex){
+
+    }
+
+}
 
 function* GetCategories(){
     yield takeEvery(ACTIONS.GET_CATEGORIES,getCategories)
@@ -125,9 +135,13 @@ function* VerifySession(){
     yield takeEvery(ACTIONS.VERIFY_SESSION,verifySession)
 
 }
+function* LogOut(){
+    yield takeEvery(ACTIONS.LOGOUT,logOut)
+
+}
 
 function* rootSaga(){
-    yield all([fork(GetProducts),fork(GetCategories),fork(GetProductsByCategory),fork(AddToCart),fork(UserLogin),fork(GetCartItems),fork(DelCartItem),fork(VerifySession)]);
+    yield all([fork(GetProducts),fork(GetCategories),fork(GetProductsByCategory),fork(AddToCart),fork(UserLogin),fork(GetCartItems),fork(DelCartItem),fork(VerifySession),fork(LogOut)]);
 }
 
 export default rootSaga;
