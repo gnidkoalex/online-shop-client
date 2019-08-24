@@ -17,5 +17,8 @@ export class ACTIONS {
     static VERIFY_SESSION="VERIFY_SESSION";
     static LOGOUT="LOGOUT";
     static LOGOUT_DONE="LOGOUT_DONE";
+    static REGISTER="REGISTER";
+    static REGISTER_DONE="REGISTER_DONE";
+
     
 }

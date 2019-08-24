@@ -17,6 +17,8 @@ import {
     verifySession,
     logOut,
     logOutDone,
+    register,
+    registerDone,
 } from "./actions";
 
 export const allActions ={
@@ -38,5 +40,7 @@ export const allActions ={
     verifySession,
     logOut,
     logOutDone,
+    register,
+    registerDone,
 
 };

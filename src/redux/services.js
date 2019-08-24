@@ -157,10 +157,23 @@ export const verifySessionService = async (data) => {
 
 }
 export const logOutService = async (data) => {
-    console.error("zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz")
-    console.log(data)
     return new Promise((resolve, reject) => {
         axios.post(`${mainUrl}users/logout`, { data })
+            .then((response) => {
+                resolve(response.data);
+            })
+            .catch(err => {
+                reject(err);
+
+            });
+    });
+
+}
+export const registerService = async (data) => {
+    console.log("register service")
+    console.log(data)
+    return new Promise((resolve, reject) => {
+        axios.post(`${mainUrl}users/create`, { data })
             .then((response) => {
                 resolve(response.data);
             })

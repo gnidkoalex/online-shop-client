@@ -12,6 +12,9 @@ import {getCartItemsService} from "./services";
 import {delCartItemService} from "./services";
 import {verifySessionService} from "./services";
 import {logOutService} from "./services";
+import {registerService} from "./services";
+
+
 // import { getCategories } from "./actions";
 
 function* getProducts(){
@@ -96,6 +99,14 @@ function* logOut(action){
     }catch(ex){
 
     }
+}
+function* register(action){
+    try{
+        const data =yield call(registerService,action); // after the getProductsService "," and your payload
+        yield put(allActions.registerDone(data));
+    }catch(ex){
+
+    }
 
 }
 
@@ -139,9 +150,13 @@ function* LogOut(){
     yield takeEvery(ACTIONS.LOGOUT,logOut)
 
 }
+function* Register(){
+    yield takeEvery(ACTIONS.REGISTER,register)
+
+}
 
 function* rootSaga(){
-    yield all([fork(GetProducts),fork(GetCategories),fork(GetProductsByCategory),fork(AddToCart),fork(UserLogin),fork(GetCartItems),fork(DelCartItem),fork(VerifySession),fork(LogOut)]);
+    yield all([fork(GetProducts),fork(GetCategories),fork(GetProductsByCategory),fork(AddToCart),fork(UserLogin),fork(GetCartItems),fork(DelCartItem),fork(VerifySession),fork(LogOut),fork(Register)]);
 }
 
 export default rootSaga;

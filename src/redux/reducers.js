@@ -75,10 +75,11 @@ export default function reducers (state={},action){
             localStorage.removeItem("session")
             localStorage.removeItem("user")
             
-            
-           
-           
-
+            return{
+                
+            }
+        }
+        case ACTIONS.REGISTER_DONE:{
             return{
                 
             }

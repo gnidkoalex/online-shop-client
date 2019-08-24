@@ -117,7 +117,6 @@ export const verifySession=(session)=>{
     }
 }
 export const logOut=(session)=>{
-    console.log(session)
     return{
         type:ACTIONS.LOGOUT,
         session
@@ -129,3 +128,17 @@ export const logOutDone = (data) => {
         data
     }
 }
+export const register=(user)=>{
+    console.log(user)
+    return{
+        type:ACTIONS.REGISTER,
+        user
+    }
+}
+export const registerDone = (data) => {
+    return {
+        type: ACTIONS.REGISTER_DONE,
+        data
+    }
+}
+

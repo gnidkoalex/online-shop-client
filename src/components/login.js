@@ -65,7 +65,7 @@ class Login extends Component {
         return (
             
 
-                <div className={classes.margin}>
+                <div className={classes.margin}  style={{marginLeft: 250}}>
                     <Grid container spacing={0} alignItems="flex-end">
                         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
         
@@ -74,7 +74,7 @@ class Login extends Component {
                         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
     
     
-                    <TextField id="password" label="password"value={this.state.password} onChange={e=>{this.setState({password:e.currentTarget.value})}} />
+                    <TextField id="password" type="password"  label="password"value={this.state.password} onChange={e=>{this.setState({password:e.currentTarget.value})}} />
 
 
 
@@ -97,6 +97,14 @@ class Login extends Component {
                   }}>
                   
                     Log in
+                  </Button>
+                  <Button size="small" color="primary" onClick={()=>{
+                      this.props.history.push("/register")
+                    
+                    
+                  }}>
+                  
+                    Register
                   </Button>
 
 

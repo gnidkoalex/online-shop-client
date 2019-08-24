@@ -72,6 +72,7 @@ class Product extends Component {
     let a= await  this.props.actions.addToCart(this.props.id,this.state.productAmount,this.props.logedInUser.cartId)
     let b= await this.props.actions.getCartItems(this.props.logedInUser.cartId)
     this.props.actions.getCartItems(this.props.logedInUser.cartId)
+
   }
 
   render() {

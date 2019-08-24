@@ -14,6 +14,9 @@ import Header from "./components/header";
 import Cart from "./components/productlist";
 import LoginComponent from "./components/login";
 import MainComponent from "./components/main";
+import registerComponent from "./components/register";
+
+
 
 
 
@@ -58,6 +61,7 @@ class App extends Component {
 
           <Route exact path="/" component={LoginComponent} />
           <Route  path="/main" component={MainComponent} />
+          <Route  path="/register" component={registerComponent} />
           
           </Switch>
 

@@ -52,9 +52,12 @@ class CartItem extends Component {
   componentDidUpdate(){
    
   }
-  deleteItem= async ()=>{
-    let a= await this.props.actions.delCartItem(this.props.logedInUser.cartId,this.props.id);
-    let b= await this.props.actions.getCartItems(this.props.logedInUser.cartId)
+  deleteItem= ()=>{
+     this.props.actions.delCartItem(this.props.logedInUser.cartId,this.props.id);
+    setTimeout(() => {
+      this.props.actions.getCartItems(this.props.logedInUser.cartId)
+    }, 20);
+   
   }
 //   handleAmountChange = e => {
 //     let amount = e.target.value
