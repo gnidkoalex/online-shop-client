@@ -40,6 +40,7 @@ class Products extends Component {
     this.state = {
       // categoryName: this.props.match.params.name,
       categoryName: "somthing",
+      
       // productAmount: 1,
       // currProduct:{}
 
@@ -54,8 +55,20 @@ class Products extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log(nextProps.match.params.name)
+    if(nextProps.match.params.name=="checkout"){
+      this.setState({
+        checkout:1
+      })
+      console.log("checkout")
+    }else{
+      this.setState({
+        checkout:0
+      })
+      this.handeleCategoryChange(nextProps.match.params.name.toLowerCase())
+  
+    }
 
-    this.handeleCategoryChange(nextProps.match.params.name.toLowerCase())
   
     
   }
@@ -75,6 +88,7 @@ class Products extends Component {
   }
 
   handeleCategoryChange = (category) => {
+    console.log(category)
     if (category != "" && category != undefined && category != null && category.toLowerCase() != this.state.categoryName.toLowerCase()) {
       this.getCategoryId(category.toLowerCase())
       this.setState({ categoryName: category.toLowerCase() })
@@ -103,10 +117,12 @@ class Products extends Component {
     const { classes } = this.props;
 
     return (
+      
       <div className="container">
         <h1>{this.props.match.params.name}</h1>
         <div className="row">
-          {this.props.productsByCategory.map((product, index) => {
+          {!this.state.checkout==1&&(<div className="row">
+            {this.props.productsByCategory.map((product, index) => {
             return (
               <div>
                 <Product name={product.productName}price={product.price} id={product._id}/>
@@ -114,6 +130,9 @@ class Products extends Component {
             
             )
           })}
+          </div>)}
+
+       
         </div>
       </div>
     );

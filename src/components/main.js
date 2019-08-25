@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 // import './App.css';
 import { BrowserRouter, Link, Switch, Route, Redirect } from "react-router-dom";
+
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { allActions } from '../redux';
@@ -13,6 +14,8 @@ import Grid from '@material-ui/core/Grid';
 import Header from "./header";
 import Cart from "./productlist";
 import LoginComponent from "./login";
+import CheckoutComponent from'../components/checkOut';
+import checkOut from '../components/checkOut';
 
 
 
@@ -89,6 +92,9 @@ class Main extends Component {
         Refresh: 1
       })
   }
+  goToCheckout=()=>{
+   this.props.history.push("/main/checkout")
+}
 
 
   render() {
@@ -101,17 +107,19 @@ class Main extends Component {
         <div className="App">
           {/* {!this.props.logedInUser&&this.props.history.push("/")} */}
           <Grid container spacing={24}>
+
             <Grid item xs={3}>
-              <Paper className={classes.paper}><Cart /></Paper>
+         
+              <Paper className={classes.paper}><Cart goToCheckout={this.goToCheckout} /></Paper>
+              
             </Grid>
             <Grid item xs={9}>
-              <Paper className={classes.paper}><Header goToLogin={this.goToLogin} />
-                <Switch>
-
-                  <Route path="/main/:name" component={ProductsComponent} />
             
-
-                </Switch></Paper>
+              <Paper className={classes.paper}>
+                <Header goToLogin={this.goToLogin}/>
+                <Route path="/main/checkout" component={CheckoutComponent} />
+                <Route path="/main/:name" component={ProductsComponent} />
+               </Paper>
             </Grid>
           </Grid>
 

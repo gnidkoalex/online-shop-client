@@ -20,6 +20,9 @@ import registerComponent from "./components/register";
 
 
 
+
+
+
 const styles = theme => ({
   root: {
     flexGrow: 1,
@@ -62,6 +65,9 @@ class App extends Component {
           <Route exact path="/" component={LoginComponent} />
           <Route  path="/main" component={MainComponent} />
           <Route  path="/register" component={registerComponent} />
+        
+          
+          
           
           </Switch>
 

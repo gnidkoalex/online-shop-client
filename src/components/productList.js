@@ -4,6 +4,10 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { allActions } from '../redux/index';
 import CartItem  from '../components/cartItem';
+import Button from '@material-ui/core/Button';
+import { MenuItem, Navbar, Nav, NavItem } from "react-bootstrap";
+
+
 
 
 class ProductList extends Component {
@@ -16,6 +20,9 @@ class ProductList extends Component {
 
     }
   }
+  
+
+  
   componentDidMount() {
    
     this.handleInitialCartItems()
@@ -44,14 +51,13 @@ class ProductList extends Component {
   }
   handleCartItems = (nextCartItems)=>{
   }
+  checkot=()=>{
+    this.props.goToCheckout()
 
-  // updateTotalPrice=(cartItem)=>{
-  //   this.setState({
-  //     totalCartPrice:cartItem
-  //     });
+  }
 
-  // }
 
+  
 
   render() {
     let totalPrice=0;
@@ -63,31 +69,27 @@ class ProductList extends Component {
 
       <div>
         <h1>cart</h1>
-        <button onClick={() => {
-          this.handleInitialCartItems()
-        }}>get cart</button>
-        {/* {console.log(this.props.logedInUser.cartId)} */}
         <div>
+          
           {
             
           
             this.props.cartItems.map((item) => {
-            console.log(item)
             return (
-              
-              // <div id={item.id}>
-              //   <div>{item._id}</div>
-              //   <h1>{item.amount}</h1>
-              //   <button onClick={(e) => {
-              //     console.log(e.target)
-              //   }}>del</button>
-              // </div>
+     
               <CartItem id={item.itemId} amount={item.amount}/>
+          
             )
 
 
 
           })}
+          <Button>delete all</Button>
+          <Navbar.Brand>
+            <Link to="/main/checkout"> checkot</Link>
+          </Navbar.Brand>
+          <Button onClick={()=>this.checkot()}>checkout</Button>
+          
         </div>
         total price:{totalPrice}
 
@@ -123,5 +125,5 @@ function mapDispatchToProps(dispatch) {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(ProductList);
