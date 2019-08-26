@@ -184,4 +184,20 @@ export const registerService = async (data) => {
     });
 
 }
+export const deleleAllCartitemsService = async (data) => {
+    console.log("deleleAllCartitemsService service")
+    console.log(data)
+    return new Promise((resolve, reject) => {
+        axios.post(`${mainUrl}cart/deleteAllCartItems`, { data })
+            .then((response) => {
+                resolve(response.data);
+            })
+            .catch(err => {
+                reject(err);
+
+            });
+    });
+
+}
+
 

@@ -13,6 +13,9 @@ import {delCartItemService} from "./services";
 import {verifySessionService} from "./services";
 import {logOutService} from "./services";
 import {registerService} from "./services";
+import {deleleAllCartitemsService} from "./services";
+
+
 
 
 // import { getCategories } from "./actions";
@@ -109,6 +112,15 @@ function* register(action){
     }
 
 }
+function* deleleAllCartitems(action){
+    try{
+        const data =yield call(deleleAllCartitemsService,action); // after the getProductsService "," and your payload
+        yield put(allActions.deleleAllCartitemsDone(data));
+    }catch(ex){
+
+    }
+
+}
 
 function* GetCategories(){
     yield takeEvery(ACTIONS.GET_CATEGORIES,getCategories)
@@ -154,9 +166,14 @@ function* Register(){
     yield takeEvery(ACTIONS.REGISTER,register)
 
 }
+function* DeleleAllCartitems(){
+    yield takeEvery(ACTIONS.DELETE_ALL_CARTITEMS,deleleAllCartitems)
+
+}
+
 
 function* rootSaga(){
-    yield all([fork(GetProducts),fork(GetCategories),fork(GetProductsByCategory),fork(AddToCart),fork(UserLogin),fork(GetCartItems),fork(DelCartItem),fork(VerifySession),fork(LogOut),fork(Register)]);
+    yield all([fork(GetProducts),fork(GetCategories),fork(GetProductsByCategory),fork(AddToCart),fork(UserLogin),fork(GetCartItems),fork(DelCartItem),fork(VerifySession),fork(LogOut),fork(Register),fork(DeleleAllCartitems)]);
 }
 
 export default rootSaga;

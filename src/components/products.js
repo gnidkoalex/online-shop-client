@@ -40,7 +40,7 @@ class Products extends Component {
     this.state = {
       // categoryName: this.props.match.params.name,
       categoryName: "somthing",
-      
+
       // productAmount: 1,
       // currProduct:{}
 
@@ -50,27 +50,27 @@ class Products extends Component {
 
   componentDidMount() {
     this.handeleCategoryChange("drinks")
-  
+
 
   }
 
   componentWillReceiveProps(nextProps) {
     console.log(nextProps.match.params.name)
-    if(nextProps.match.params.name=="checkout"){
+    if (nextProps.match.params.name == "checkout") {
       this.setState({
-        checkout:1
+        checkout: 1
       })
       console.log("checkout")
-    }else{
+    } else {
       this.setState({
-        checkout:0
+        checkout: 0
       })
       this.handeleCategoryChange(nextProps.match.params.name.toLowerCase())
-  
+
     }
 
-  
-    
+
+
   }
 
 
@@ -102,13 +102,13 @@ class Products extends Component {
   //   console.log(e)
   //   this.setState(prevState => ({
   //     productAmount:amount
-    
-      
+
+
   //   }));
 
   // }
-  
- 
+
+
 
 
 
@@ -117,23 +117,30 @@ class Products extends Component {
     const { classes } = this.props;
 
     return (
-      
-      <div className="container">
-        <h1>{this.props.match.params.name}</h1>
-        <div className="row">
-          {!this.state.checkout==1&&(<div className="row">
-            {this.props.productsByCategory.map((product, index) => {
-            return (
-              <div>
-                <Product name={product.productName}price={product.price} id={product._id}/>
-              </div>
-            
-            )
-          })}
-          </div>)}
 
-       
-        </div>
+      <div>
+        {!this.state.checkout == 1 && (
+        <div className="container">
+
+
+          <h1>{this.props.match.params.name}</h1>
+          <div className="row">
+            
+
+              <div className="row">
+                {this.props.productsByCategory.map((product, index) => {
+                  return (
+                    <div>
+                      <Product name={product.productName} price={product.price} id={product._id} />
+                    </div>
+
+                  )
+                })}
+              </div>
+
+
+          </div>
+        </div>)}
       </div>
     );
   }
@@ -142,7 +149,7 @@ function mapStateToProps(state) {
   return {
     categories: state.categories || [],
     productsByCategory: state.productsByCategory || [],
-    logedInUser:state.logedInUser||{},
+    logedInUser: state.logedInUser || {},
     cartItems: state.cartItems || [],
 
   }
@@ -155,7 +162,7 @@ function mapDispatchToProps(dispatch) {
         getProducts: allActions.getProducts,
         getCategories: allActions.getCategories,
         getProductsByCategory: allActions.getProductsByCategory,
-    
+
 
       },
       dispatch

@@ -92,9 +92,6 @@ class Main extends Component {
         Refresh: 1
       })
   }
-  goToCheckout=()=>{
-   this.props.history.push("/main/checkout")
-}
 
 
   render() {

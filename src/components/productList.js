@@ -49,11 +49,15 @@ class ProductList extends Component {
     }
 
   }
-  handleCartItems = (nextCartItems)=>{
-  }
-  checkot=()=>{
-    this.props.goToCheckout()
+  // handleCartItems = (nextCartItems)=>{
+  // }
+  // checkot=()=>{
+  //   this.props.goToCheckout()
 
+  // }
+  deleteAll=async()=>{
+   await this.props.actions.deleteAllCartitems(this.props.logedInUser.cartId)
+    this.props.actions.getCartItems(this.props.logedInUser.cartId)
   }
 
 
@@ -84,11 +88,13 @@ class ProductList extends Component {
 
 
           })}
-          <Button>delete all</Button>
+          <Button onClick={()=>{
+           this.deleteAll()
+          }}>delete all</Button>
           <Navbar.Brand>
-            <Link to="/main/checkout"> checkot</Link>
+            <Link to="/main/checkout"> checkout</Link>
           </Navbar.Brand>
-          <Button onClick={()=>this.checkot()}>checkout</Button>
+
           
         </div>
         total price:{totalPrice}
@@ -114,6 +120,7 @@ function mapDispatchToProps(dispatch) {
     actions: bindActionCreators(
       {
         getCartItems: allActions.getCartItems,
+        deleteAllCartitems: allActions.deleteAllCartitems,
         
 
       },

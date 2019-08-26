@@ -84,6 +84,15 @@ export default function reducers (state={},action){
                 
             }
         }
+        case ACTIONS.DELETE_ALL_CARTITEMS_DONE:{
+            
+           
+
+            return{
+                ...state,
+                cartItems:[],
+            }
+        }
             
             
     

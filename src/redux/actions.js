@@ -141,4 +141,16 @@ export const registerDone = (data) => {
         data
     }
 }
+export const deleteAllCartitems=(cartId)=>{
+    return{
+        type:ACTIONS.DELETE_ALL_CARTITEMS,
+        cartId
+    }
+}
+export const deleteAllCartitemsDone = (data) => {
+    return {
+        type: ACTIONS.DELETE_ALL_CARTITEMS_DONE,
+        data
+    }
+}
 

@@ -19,6 +19,9 @@ import {
     logOutDone,
     register,
     registerDone,
+    deleteAllCartitems,
+    deleteAllCartitemsDone,
+    
 } from "./actions";
 
 export const allActions ={
@@ -42,5 +45,7 @@ export const allActions ={
     logOutDone,
     register,
     registerDone,
+    deleteAllCartitems,
+    deleteAllCartitemsDone,
 
 };
