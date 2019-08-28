@@ -103,7 +103,7 @@ function* logOut(action){
 
     }
 }
-function* register(action){
+function* register(action){ 
     try{
         const data =yield call(registerService,action); // after the getProductsService "," and your payload
         yield put(allActions.registerDone(data));

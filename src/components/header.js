@@ -9,6 +9,7 @@ import { isPromiseAlike } from "q";
 import Login from "./login"
 import Button from '@material-ui/core/Button';
 import { bindActionCreators } from "redux";
+import TextField from "@material-ui/core/TextField";
 import { allActions } from '../redux/index';
 
 
@@ -87,6 +88,7 @@ class Header extends Component {
           <div>
             hey {this.props.logedInUser.name}
           </div>
+      
 
 
 
@@ -118,7 +120,9 @@ class Header extends Component {
 function mapStateToProps(state) {
 
   return {
-    logedInUser: state.logedInUser || {}
+    logedInUser: state.logedInUser || {},
+
+  
 
   };
 }

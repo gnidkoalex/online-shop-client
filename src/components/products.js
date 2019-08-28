@@ -40,6 +40,8 @@ class Products extends Component {
     this.state = {
       // categoryName: this.props.match.params.name,
       categoryName: "somthing",
+      search: [],
+      notFound: false
 
       // productAmount: 1,
       // currProduct:{}
@@ -97,6 +99,29 @@ class Products extends Component {
     }
 
   }
+  search = (e) => {
+    let searchFor = []
+    let noFound = 0
+    let notFound = false
+    if (e.target.value != "") {
+      noFound = 1
+      searchFor = this.props.products.filter(function (product) {
+        return product.productName.includes(e.target.value)
+      })
+    }
+    if (noFound == 1 && searchFor.length == 0) {
+      notFound = true
+    }
+
+    this.setState({
+      search: searchFor,
+      notFound: notFound
+
+    })
+
+
+
+  }
   // handleAmountChange = e => {
   //   let amount = e.target.value
   //   console.log(e)
@@ -119,28 +144,54 @@ class Products extends Component {
     return (
 
       <div>
+
+        {this.state.checkout==0&&(
+              <TextField label="Search" onChange={(e) => {
+                this.search(e)
+              }} />
+        )}
+    
         {!this.state.checkout == 1 && (
-        <div className="container">
+          <div className="container">
 
 
-          <h1>{this.props.match.params.name}</h1>
-          <div className="row">
-            
+            <h1>{this.props.match.params.name}</h1>
+            <div className="row">
+
 
               <div className="row">
-                {this.props.productsByCategory.map((product, index) => {
-                  return (
-                    <div>
-                      <Product name={product.productName} price={product.price} id={product._id} />
-                    </div>
+                {this.state.search.length == 0 && this.state.notFound == false && (
+                  this.props.productsByCategory.map((product, index) => {
+                    return (
+                      <div>
+                        <Product name={product.productName} price={product.price} id={product._id} />
+                      </div>
 
-                  )
-                })}
+                    )
+                  })
+                )}
+                {!this.state.search.length == 0 && this.state.notFound == false && (
+                  this.state.search.map((product, index) => {
+                    return (
+                      <div>
+                        <Product name={product.productName} price={product.price} id={product._id} />
+                      </div>
+
+                    )
+                  })
+                )}
+                {this.state.notFound == true && (
+
+
+                  <h1>Sorry we dont have such product at the store</h1>
+
+                )}
+
               </div>
 
 
-          </div>
-        </div>)}
+            </div>
+          </div>)}
       </div>
     );
   }
@@ -151,6 +202,7 @@ function mapStateToProps(state) {
     productsByCategory: state.productsByCategory || [],
     logedInUser: state.logedInUser || {},
     cartItems: state.cartItems || [],
+    products: state.products || [],
 
   }
 }
