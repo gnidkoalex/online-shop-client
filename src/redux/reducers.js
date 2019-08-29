@@ -93,6 +93,16 @@ export default function reducers (state={},action){
                 cartItems:[],
             }
         }
+        case ACTIONS.GET_PRODUCT_TO_DEIT_DONE:{
+            let productToEdit=action.data
+            
+           
+
+            return{
+                ...state,
+                productToEdit:productToEdit
+            }
+        }
             
             
     

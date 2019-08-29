@@ -74,6 +74,7 @@ export const userLoginService = async (data) => {
                         currUser.userId = response.data.userId
                         currUser._id = response.data._id
                         currUser.session = response.data.session
+                        currUser.role=response.data.role
 
                         localStorage.setItem("session", currUser.session);
                         localStorage.setItem("user", JSON.stringify(currUser));
@@ -138,6 +139,7 @@ export const verifySessionService = async (data) => {
                 currUser.userId = response.data.userId
                 currUser._id = response.data._id
                 currUser.session = data.session
+                currUser.role=response.data.role
                 let customerId = response.data.userId
 
                 axios.post(`${mainUrl}cart/findCartByUser`, { customerId })
@@ -199,5 +201,22 @@ export const deleleAllCartitemsService = async (data) => {
     });
 
 }
+
+export const getProductToEditService = async (productId) => {
+    return new Promise((resolve, reject) => {
+        axios.get(`${mainUrl}products/edit/${productId.productId}`)
+            .then((response) => {
+                console.error("=-------------------------------------------------------")
+                console.log(response.data)
+                resolve(response.data);
+            })
+            .catch(err => {
+                reject(err);
+
+            });
+    });
+
+}
+
 
 

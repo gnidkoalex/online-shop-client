@@ -38,8 +38,8 @@ class Product extends Component {
     super(props);
     this.state = {
       productAmount: 1,
-      currProduct:{},
-      cartItemsTry:[],
+      currProduct: {},
+      cartItemsTry: [],
 
     };
   }
@@ -50,27 +50,27 @@ class Product extends Component {
   //     cartItemsTry:nextProps.cartItems
 
   //   })
-    
+
   // }
   componentDidMount() {
 
   }
-  componentDidUpdate(){
-   
+  componentDidUpdate() {
+
   }
   handleAmountChange = e => {
     let amount = e.target.value
     this.setState(prevState => ({
-      productAmount:amount
+      productAmount: amount
 
-    
-      
+
+
     }));
 
   }
-  addItemToCart= async ()=>{
-    let a= await  this.props.actions.addToCart(this.props.id,this.state.productAmount,this.props.logedInUser.cartId)
-    let b= await this.props.actions.getCartItems(this.props.logedInUser.cartId)
+  addItemToCart = async () => {
+    let a = await this.props.actions.addToCart(this.props.id, this.state.productAmount, this.props.logedInUser.cartId)
+    let b = await this.props.actions.getCartItems(this.props.logedInUser.cartId)
     this.props.actions.getCartItems(this.props.logedInUser.cartId)
 
   }
@@ -78,73 +78,74 @@ class Product extends Component {
   render() {
     const { classes } = this.props;
     return (
-      
-        <div>
-             <Card className={classes.card}>
-                <CardActionArea>
-                  <CardMedia
-                    className={classes.media}
-                    image="C:/Users/ASUS/Desktop/pics/bannana.jpg"
-                    title="bannana"
+
+      <div>
+        <Card className={classes.card}>
+          <CardActionArea>
+            <CardMedia
+              className={classes.media}
+              image="C:/Users/ASUS/Desktop/pics/bannana.jpg"
+              title="bannana"
 
 
-                  />
-                  <CardContent>
-                    <Typography gutterBottom variant="h4" component="h2">
-                      {this.props.name}
-                    </Typography>
-                    <Typography component="p">
-                      {this.props.price + "₪"}
-                    </Typography>
+            />
+            <CardContent>
+              <Typography gutterBottom variant="h4" component="h2">
+                {this.props.name}
+              </Typography>
+              <Typography component="p">
+                {this.props.price + "₪"}
+              </Typography>
 
-                  </CardContent>
-                </CardActionArea>
-                <CardActions>
-                  <div> amount : </div>
-                  <TextField
-                    id="amount"
-                    name="amount"
-                    type="number"
-                    className={classes.textField}
-                    // value={this.state.productAmount}
-                    // onChange={this.handleAmountChange}
-                    // onChange={this.handleInputChange}
-                    margin="normal"
-                    onClick={this.handleAmountChange}
+            </CardContent>
+          </CardActionArea>
+          <CardActions>
+            {this.props.logedInUser.role != "admin" && (
+                <div>
+                <span> amount : </span>
+                <TextField
+                  id="amount"
+                  name="amount"
+                  type="number"
+                  className={classes.textField}
+                  onClick={this.handleAmountChange}
+                />
+                
+                <Button size="small" color="primary" onClick={() => {
+                  if (this.state.productAmount >= 1) {
+                    this.addItemToCart()
+
+                  } else {
+                    alert("you must have at least one to add it")
+                  }
+                  // this.addToCart(this.props.id,this.state.productAmount)
+                }}>
+
+                  add
+                  </Button></div>)}
+            {this.props.logedInUser.role == "admin" && (
+              <div>
+                <Button size="small" color="primary" onClick={() => {
+                   this.props.actions.getProductToEdit(this.props.id)
+                }}>
+
+                  edit
+                  </Button></div>)}
+          </CardActions>
+        </Card>
 
 
-                  />
-                  <br />
-                  <br />
-                  <br />
 
-                  <Button size="small" color="primary" onClick={()=>{
-                    if(this.state.productAmount>=1){
-                      this.addItemToCart()
-                     
-                    }else{
-                      alert("you must have at least one to add it")
-                    }
-                    // this.addToCart(this.props.id,this.state.productAmount)
-                  }}>
-                  
-                    add
-                  </Button>
-                </CardActions>
-              </Card>
 
-            
 
-         
-         
-        </div>
-      
+      </div>
+
     );
   }
 }
 function mapStateToProps(state) {
   return {
-    logedInUser:state.logedInUser||{},
+    logedInUser: state.logedInUser || {},
     cartItems: state.cartItems || [],
 
   }
@@ -152,12 +153,13 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    
+
     actions: bindActionCreators(
       {
         // getProducts:allActions.getProducts
-        addToCart:allActions.addToCart,
-        getCartItems:allActions.getCartItems,
+        addToCart: allActions.addToCart,
+        getCartItems: allActions.getCartItems,
+        getProductToEdit:allActions.getProductToEdit,
 
       },
       dispatch

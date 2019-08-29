@@ -153,4 +153,16 @@ export const deleteAllCartitemsDone = (data) => {
         data
     }
 }
+export const getProductToEdit=(productId)=>{
+    return{
+        type:ACTIONS.GET_PRODUCT_TO_DEIT,
+        productId
+    }
+}
+export const getProductToEditDone = (data) => {
+    return {
+        type: ACTIONS.GET_PRODUCT_TO_DEIT_DONE,
+        data
+    }
+}
 

@@ -99,6 +99,7 @@ class Products extends Component {
     }
 
   }
+
   search = (e) => {
     let searchFor = []
     let noFound = 0

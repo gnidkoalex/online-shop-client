@@ -14,8 +14,9 @@ import Grid from '@material-ui/core/Grid';
 import Header from "./header";
 import Cart from "./productlist";
 import LoginComponent from "./login";
-import CheckoutComponent from'../components/checkOut';
-import checkOut from '../components/checkOut';
+import CheckoutComponent from '../components/checkOut';
+import Admin from '../components/admin';
+
 
 
 
@@ -35,7 +36,7 @@ class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      Refresh:0
+      Refresh: 0
 
 
     };
@@ -58,13 +59,13 @@ class Main extends Component {
     else {
       console.log("none")
       this.props.history.push("/")
-      
+
     }
 
   }
   componentDidUpdate() {
     let session = localStorage.getItem("session")
-    if(!session){
+    if (!session) {
       this.props.history.push("/")
 
     }
@@ -87,10 +88,10 @@ class Main extends Component {
     }, 1000);
 
   }
-  goToLogin=()=>{
-      this.setState({
-        Refresh: 1
-      })
+  goToLogin = () => {
+    this.setState({
+      Refresh: 1
+    })
   }
 
 
@@ -106,17 +107,23 @@ class Main extends Component {
           <Grid container spacing={24}>
 
             <Grid item xs={3}>
-         
-              <Paper className={classes.paper}><Cart goToCheckout={this.goToCheckout} /></Paper>
-              
+
+              {this.props.logedInUser.role != "admin" && (
+                <Paper className={classes.paper}><Cart goToCheckout={this.goToCheckout} /></Paper>
+              )}
+               {this.props.logedInUser.role == "admin" && (
+                <Paper className={classes.paper}><Admin/></Paper>
+              )}
+
+
             </Grid>
             <Grid item xs={9}>
-            
+
               <Paper className={classes.paper}>
-                <Header goToLogin={this.goToLogin}/>
+                <Header goToLogin={this.goToLogin} />
                 <Route path="/main/checkout" component={CheckoutComponent} />
                 <Route path="/main/:name" component={ProductsComponent} />
-               </Paper>
+              </Paper>
             </Grid>
           </Grid>
 
