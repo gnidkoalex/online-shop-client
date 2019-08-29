@@ -16,6 +16,7 @@ import Typography from '@material-ui/core/Typography';
 import TextField from "@material-ui/core/TextField";
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
+import axios from "axios";
 
 
 
@@ -43,6 +44,10 @@ class AdminItem extends Component {
       productName: "",
       price: "",
       category: {},
+      categoryId:"",
+      id:"",
+      selectedFile:{},
+
 
 
     };
@@ -54,7 +59,7 @@ class AdminItem extends Component {
   //   }
   componentDidMount() {
     if (this.props.item) {
-      console.log(this.props.item.categoryId[0])
+      console.log(this.props.item)
 
       let currentCategory = this.categoryIdToName(this.props.item.categoryId[0])
       console.log(currentCategory[0])
@@ -62,6 +67,8 @@ class AdminItem extends Component {
         productName: this.props.item.productName,
         price: this.props.item.price,
         category: currentCategory[0].categoryName,
+        categoryId:currentCategory[0]._id,
+        id: this.props.item._id
 
       })
     }
@@ -80,6 +87,8 @@ class AdminItem extends Component {
         productName: nextProps.item.productName,
         price: nextProps.item.price,
         category: currentCategory[0].categoryName,
+        categoryId: currentCategory[0]._id,
+        id: nextProps.item._id
 
       })
     }
@@ -96,17 +105,49 @@ class AdminItem extends Component {
     return categoryy
 
   }
-  categoryHandle = (e) => {
+  categoryNameToId = (name) => {
+    let categoryy = this.props.categories.filter(function (category) {
+      return category.categoryName == name
 
-    console.log(e.target.value)
+    })
+    console.log(categoryy)
+    return categoryy[0]._id
+
+  }
+  categoryHandle = (e) => {
+    let categoryId=this.categoryNameToId(e.target.value)
+
+    
     this.setState({
-      category: e.target.value
+      category: e.target.value,
+      categoryId:categoryId
     })
 
   }
   handleFile=(e)=>{
     this.setState({
       selectedFile:e.target.files[0]
+    })
+  }
+  updateProduct=()=>{
+    let product = new FormData()
+    product.append('file', this.state.selectedFile, this.state.selectedFile.name);
+    product.append('id',this.state.id)
+    product.append('price',this.state.price)
+    product.append('categoryId',this.state.categoryId)
+    product.append('productName',this.state.productName)
+    
+    // let product={}
+    // product.id=this.state.id;
+    // product.price=this.state.price;
+    // product.categoryId=this.state.category;
+    // product.image=image;
+    // console.log(product)
+    axios
+    .post(`http://localhost:2200/products/update`, product, {
+    })
+    .then(res => {
+      console.log(res)
     })
   }
 
@@ -189,6 +230,10 @@ class AdminItem extends Component {
               }}>
 
                 save
+                  </Button>
+                  <Button size="small" color="primary" onClick={this.updateProduct}>
+
+                product
                   </Button>
 
             </CardContent>

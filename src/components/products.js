@@ -163,9 +163,11 @@ class Products extends Component {
               <div className="row">
                 {this.state.search.length == 0 && this.state.notFound == false && (
                   this.props.productsByCategory.map((product, index) => {
+                    console.log(product)
                     return (
+                      
                       <div>
-                        <Product name={product.productName} price={product.price} id={product._id} />
+                        <Product name={product.productName} price={product.price} id={product._id} image={product.image} />
                       </div>
 
                     )

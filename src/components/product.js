@@ -84,11 +84,12 @@ class Product extends Component {
           <CardActionArea>
             <CardMedia
               className={classes.media}
-              image="C:/Users/ASUS/Desktop/pics/bannana.jpg"
-              title="bannana"
+              image={this.props.image}
+              // title="bannana"
 
 
             />
+            {/* <img src = {this.props.image}  /> */}
             <CardContent>
               <Typography gutterBottom variant="h4" component="h2">
                 {this.props.name}
