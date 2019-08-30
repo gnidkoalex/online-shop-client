@@ -50,6 +50,7 @@ class AdminItem extends Component {
       selectedFile: {},
       image: "",
       changeImage: false,
+      addingItem: false
 
 
 
@@ -76,6 +77,11 @@ class AdminItem extends Component {
 
       })
     }
+    else {
+      this.setState({
+        addingItem: true
+      })
+    }
 
 
   }
@@ -96,6 +102,11 @@ class AdminItem extends Component {
         image: this.props.item.image,
 
       })
+    } else {
+      this.setState({
+        addingItem: true
+      })
+
     }
 
 
@@ -156,11 +167,11 @@ class AdminItem extends Component {
         product.append('productName', this.state.productName)
         product.append('changeImage', true)
         axios
-        .post(`http://localhost:2200/products/update`, product, {
-        })
-        .then(res => {
-          console.log(res)
-        })
+          .post(`http://localhost:2200/products/update`, product, {
+          })
+          .then(res => {
+            console.log(res)
+          })
       } else {
         alert("all params must be filed")
       }
@@ -171,7 +182,7 @@ class AdminItem extends Component {
       // product.categoryId=this.state.category;
       // product.image=image;
       // console.log(product)
-     
+
     } else {
       if (this.state.id && this.state.price && this.state.categoryId && this.state.productName) {
         let product = {}
@@ -189,10 +200,32 @@ class AdminItem extends Component {
           .then(res => {
             console.log(res)
           })
-      }else{
+      } else {
         alert("all params must be filed")
       }
     }
+  }
+
+  addNewProduct=()=>{
+    if (this.state.selectedFile && this.state.selectedFile.name && this.state.price && this.state.categoryId && this.state.productName) {
+
+
+      let product = new FormData()
+      product.append('file', this.state.selectedFile, this.state.selectedFile.name);
+      product.append('price', this.state.price)
+      product.append('categoryId', this.state.categoryId)
+      product.append('productName', this.state.productName)
+      product.append('changeImage', true)
+      axios
+        .post(`http://localhost:2200/products/add`, product, {
+        })
+        .then(res => {
+          console.log(res)
+        })
+    } else {
+      alert("all params must be filed")
+    }
+
   }
 
   //   handleAmountChange = e => {
@@ -218,6 +251,13 @@ class AdminItem extends Component {
     return (
 
       <div>
+        {this.state.addingItem == false && (
+          <h3>edit</h3>
+        )}
+        {this.state.addingItem == true && (
+          <h3>add</h3>
+        )}
+
 
         <Card className={classes.card}>
           <CardActionArea>
@@ -256,18 +296,33 @@ class AdminItem extends Component {
               <MenuItem value={30}>Thirty</MenuItem> */}
               </Select>
               <br /><br />
-              <span>change image</span>
+              {this.state.addingItem == false && (
+                <div>
+                  <span>change image</span>
+                  <Checkbox
+
+                    onChange={this.changeImage}
+                    color="primary"
+                  />
+                </div>
+              )}
+              {/* <span>change image</span>
               <Checkbox
 
                 onChange={this.changeImage}
                 color="primary"
-              />
+              /> */}
               {this.state.changeImage == true && (
                 <div>image:
               <input type="file" placeholder={this.state.image} onChange={this.handleFile} />
                 </div>
               )}
               <br />
+              {this.state.addingItem == true && (
+                <div>image:
+              <input type="file" placeholder={this.state.image} onChange={this.handleFile} />
+                </div>
+              )}
 
 
 
@@ -278,16 +333,26 @@ class AdminItem extends Component {
                       {this.props.amount}
                     </Typography> */}
 
-              <Button size="small" color="primary" onClick={() => {
+              {/* <Button size="small" color="primary" onClick={() => {
                 console.log(this.state)
               }}>
 
                 save
-                  </Button>
+                  </Button> */}
+                   {this.state.addingItem == false && (
               <Button size="small" color="primary" onClick={this.updateProduct}>
 
-                product
-                  </Button>
+                save edit
+                  </Button>)}
+
+
+                  {this.state.addingItem == true && (
+
+
+              <Button size="small" color="primary" onClick={this.addNewProduct}>
+
+                add
+                  </Button> )}
 
             </CardContent>
           </CardActionArea>

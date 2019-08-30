@@ -25,8 +25,9 @@ const styles = {
   media: {
     maxHeight: 200,
     minHeight: 200,
-    maxWidth: 230,
-    minWidth: 230,
+    maxWidth: 228,
+    minWidth: 228,
+    
   },
   textField: {
 
