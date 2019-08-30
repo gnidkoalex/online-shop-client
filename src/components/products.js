@@ -177,7 +177,7 @@ class Products extends Component {
                   this.state.search.map((product, index) => {
                     return (
                       <div>
-                        <Product name={product.productName} price={product.price} id={product._id} />
+                        <Product name={product.productName} price={product.price} id={product._id} image={product.image} />
                       </div>
 
                     )

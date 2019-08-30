@@ -23,7 +23,10 @@ const styles = {
     minWidth: 230,
   },
   media: {
-    height: 140,
+    maxHeight: 200,
+    minHeight: 200,
+    maxWidth: 230,
+    minWidth: 230,
   },
   textField: {
 
@@ -69,10 +72,10 @@ class Product extends Component {
 
   }
   addItemToCart = async () => {
-    let a = await this.props.actions.addToCart(this.props.id, this.state.productAmount, this.props.logedInUser.cartId)
-    let b = await this.props.actions.getCartItems(this.props.logedInUser.cartId)
-    this.props.actions.getCartItems(this.props.logedInUser.cartId)
-
+    await this.props.actions.addToCart(this.props.id, this.state.productAmount, this.props.logedInUser.cartId)
+    setTimeout(() => {
+      this.props.actions.getCartItems(this.props.logedInUser.cartId)
+    }, 20);
   }
 
   render() {
@@ -85,11 +88,7 @@ class Product extends Component {
             <CardMedia
               className={classes.media}
               image={this.props.image}
-              // title="bannana"
-
-
             />
-            {/* <img src = {this.props.image}  /> */}
             <CardContent>
               <Typography gutterBottom variant="h4" component="h2">
                 {this.props.name}
@@ -102,7 +101,7 @@ class Product extends Component {
           </CardActionArea>
           <CardActions>
             {this.props.logedInUser.role != "admin" && (
-                <div>
+              <div>
                 <span> amount : </span>
                 <TextField
                   id="amount"
@@ -111,7 +110,7 @@ class Product extends Component {
                   className={classes.textField}
                   onClick={this.handleAmountChange}
                 />
-                
+
                 <Button size="small" color="primary" onClick={() => {
                   if (this.state.productAmount >= 1) {
                     this.addItemToCart()
@@ -127,7 +126,7 @@ class Product extends Component {
             {this.props.logedInUser.role == "admin" && (
               <div>
                 <Button size="small" color="primary" onClick={() => {
-                   this.props.actions.getProductToEdit(this.props.id)
+                  this.props.actions.getProductToEdit(this.props.id)
                 }}>
 
                   edit
@@ -160,7 +159,7 @@ function mapDispatchToProps(dispatch) {
         // getProducts:allActions.getProducts
         addToCart: allActions.addToCart,
         getCartItems: allActions.getCartItems,
-        getProductToEdit:allActions.getProductToEdit,
+        getProductToEdit: allActions.getProductToEdit,
 
       },
       dispatch

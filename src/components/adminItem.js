@@ -17,6 +17,7 @@ import TextField from "@material-ui/core/TextField";
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import axios from "axios";
+import Checkbox from '@material-ui/core/Checkbox';
 
 
 
@@ -44,9 +45,11 @@ class AdminItem extends Component {
       productName: "",
       price: "",
       category: {},
-      categoryId:"",
-      id:"",
-      selectedFile:{},
+      categoryId: "",
+      id: "",
+      selectedFile: {},
+      image: "",
+      changeImage: false,
 
 
 
@@ -67,8 +70,9 @@ class AdminItem extends Component {
         productName: this.props.item.productName,
         price: this.props.item.price,
         category: currentCategory[0].categoryName,
-        categoryId:currentCategory[0]._id,
-        id: this.props.item._id
+        categoryId: currentCategory[0]._id,
+        id: this.props.item._id,
+        image: this.props.item.image
 
       })
     }
@@ -88,7 +92,8 @@ class AdminItem extends Component {
         price: nextProps.item.price,
         category: currentCategory[0].categoryName,
         categoryId: currentCategory[0]._id,
-        id: nextProps.item._id
+        id: nextProps.item._id,
+        image: this.props.item.image,
 
       })
     }
@@ -115,40 +120,79 @@ class AdminItem extends Component {
 
   }
   categoryHandle = (e) => {
-    let categoryId=this.categoryNameToId(e.target.value)
+    let categoryId = this.categoryNameToId(e.target.value)
 
-    
+
     this.setState({
       category: e.target.value,
-      categoryId:categoryId
+      categoryId: categoryId
     })
 
   }
-  handleFile=(e)=>{
+  handleFile = (e) => {
     this.setState({
-      selectedFile:e.target.files[0]
+      selectedFile: e.target.files[0]
     })
   }
-  updateProduct=()=>{
-    let product = new FormData()
-    product.append('file', this.state.selectedFile, this.state.selectedFile.name);
-    product.append('id',this.state.id)
-    product.append('price',this.state.price)
-    product.append('categoryId',this.state.categoryId)
-    product.append('productName',this.state.productName)
-    
-    // let product={}
-    // product.id=this.state.id;
-    // product.price=this.state.price;
-    // product.categoryId=this.state.category;
-    // product.image=image;
-    // console.log(product)
-    axios
-    .post(`http://localhost:2200/products/update`, product, {
+  changeImage = () => {
+    let flag = true;
+    if (this.state.changeImage == true) {
+      flag = false
+    }
+    this.setState({
+      changeImage: flag
     })
-    .then(res => {
-      console.log(res)
-    })
+  }
+  updateProduct = () => {
+    if (this.state.changeImage == true) {
+      if (this.state.selectedFile && this.state.selectedFile.name && this.state.id && this.state.price && this.state.categoryId && this.state.productName) {
+
+
+        let product = new FormData()
+        product.append('file', this.state.selectedFile, this.state.selectedFile.name);
+        product.append('id', this.state.id)
+        product.append('price', this.state.price)
+        product.append('categoryId', this.state.categoryId)
+        product.append('productName', this.state.productName)
+        product.append('changeImage', true)
+        axios
+        .post(`http://localhost:2200/products/update`, product, {
+        })
+        .then(res => {
+          console.log(res)
+        })
+      } else {
+        alert("all params must be filed")
+      }
+
+      // let product={}
+      // product.id=this.state.id;
+      // product.price=this.state.price;
+      // product.categoryId=this.state.category;
+      // product.image=image;
+      // console.log(product)
+     
+    } else {
+      if (this.state.id && this.state.price && this.state.categoryId && this.state.productName) {
+        let product = {}
+
+        product.id = this.state.id
+        product.price = this.state.price
+        product.categoryId = this.state.categoryId
+        product.productName = this.state.productName
+        product.changeImage = false
+
+
+        axios
+          .post(`http://localhost:2200/products/update`, product, {
+          })
+          .then(res => {
+            console.log(res)
+          })
+      }else{
+        alert("all params must be filed")
+      }
+    }
   }
 
   //   handleAmountChange = e => {
@@ -211,10 +255,19 @@ class AdminItem extends Component {
               <MenuItem value={20}>Twenty</MenuItem>
               <MenuItem value={30}>Thirty</MenuItem> */}
               </Select>
-              <br/><br/>
-              <div>image:</div>
-              <input type="file" onChange={this.handleFile}/>
-              <br/>
+              <br /><br />
+              <span>change image</span>
+              <Checkbox
+
+                onChange={this.changeImage}
+                color="primary"
+              />
+              {this.state.changeImage == true && (
+                <div>image:
+              <input type="file" placeholder={this.state.image} onChange={this.handleFile} />
+                </div>
+              )}
+              <br />
 
 
 
@@ -224,14 +277,14 @@ class AdminItem extends Component {
                     <Typography component="p">
                       {this.props.amount}
                     </Typography> */}
-             
+
               <Button size="small" color="primary" onClick={() => {
                 console.log(this.state)
               }}>
 
                 save
                   </Button>
-                  <Button size="small" color="primary" onClick={this.updateProduct}>
+              <Button size="small" color="primary" onClick={this.updateProduct}>
 
                 product
                   </Button>
