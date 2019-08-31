@@ -157,8 +157,6 @@ class AdminItem extends Component {
   updateProduct = () => {
     if (this.state.changeImage == true) {
       if (this.state.selectedFile && this.state.selectedFile.name && this.state.id && this.state.price && this.state.categoryId && this.state.productName) {
-
-
         let product = new FormData()
         product.append('file', this.state.selectedFile, this.state.selectedFile.name);
         product.append('id', this.state.id)
@@ -166,62 +164,34 @@ class AdminItem extends Component {
         product.append('categoryId', this.state.categoryId)
         product.append('productName', this.state.productName)
         product.append('changeImage', true)
-        axios
-          .post(`http://localhost:2200/products/update`, product, {
-          })
-          .then(res => {
-            console.log(res)
-          })
+        this.props.actions.updateProduct(product)
       } else {
         alert("all params must be filed")
       }
-
-      // let product={}
-      // product.id=this.state.id;
-      // product.price=this.state.price;
-      // product.categoryId=this.state.category;
-      // product.image=image;
-      // console.log(product)
-
     } else {
       if (this.state.id && this.state.price && this.state.categoryId && this.state.productName) {
         let product = {}
-
         product.id = this.state.id
         product.price = this.state.price
         product.categoryId = this.state.categoryId
         product.productName = this.state.productName
         product.changeImage = false
-
-
-        axios
-          .post(`http://localhost:2200/products/update`, product, {
-          })
-          .then(res => {
-            console.log(res)
-          })
+        this.props.actions.updateProduct(product)
       } else {
         alert("all params must be filed")
       }
     }
   }
 
-  addNewProduct=()=>{
+  addNewProduct = () => {
     if (this.state.selectedFile && this.state.selectedFile.name && this.state.price && this.state.categoryId && this.state.productName) {
-
-
       let product = new FormData()
       product.append('file', this.state.selectedFile, this.state.selectedFile.name);
       product.append('price', this.state.price)
       product.append('categoryId', this.state.categoryId)
       product.append('productName', this.state.productName)
       product.append('changeImage', true)
-      axios
-        .post(`http://localhost:2200/products/add`, product, {
-        })
-        .then(res => {
-          console.log(res)
-        })
+      this.props.actions.addProduct(product)
     } else {
       alert("all params must be filed")
     }
@@ -339,20 +309,20 @@ class AdminItem extends Component {
 
                 save
                   </Button> */}
-                   {this.state.addingItem == false && (
-              <Button size="small" color="primary" onClick={this.updateProduct}>
+              {this.state.addingItem == false && (
+                <Button size="small" color="primary" onClick={this.updateProduct}>
 
-                save edit
+                  save edit
                   </Button>)}
 
 
-                  {this.state.addingItem == true && (
+              {this.state.addingItem == true && (
 
 
-              <Button size="small" color="primary" onClick={this.addNewProduct}>
+                <Button size="small" color="primary" onClick={this.addNewProduct}>
 
-                add
-                  </Button> )}
+                  add
+                  </Button>)}
 
             </CardContent>
           </CardActionArea>
@@ -386,7 +356,9 @@ function mapDispatchToProps(dispatch) {
         // getProducts:allActions.getProducts
         addToCart: allActions.addToCart,
         delCartItem: allActions.delCartItem,
-        getCartItems: allActions.getCartItems
+        getCartItems: allActions.getCartItems,
+        updateProduct: allActions.updateProduct,
+        addProduct: allActions.addProduct,
 
       },
       dispatch

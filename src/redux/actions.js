@@ -165,4 +165,29 @@ export const getProductToEditDone = (data) => {
         data
     }
 }
+export const updateProduct=(data)=>{
+    return{
+        type:ACTIONS.UPDATE_PRODUCT,
+        data
+    }
+}
+export const updataProductDone = (data) => {
+    return {
+        type: ACTIONS.UPDATE_PRODUCT_DONE,
+        data
+    }
+}
+export const addProduct=(data)=>{
+    return{
+        type:ACTIONS.ADD_PRODUCT,
+        data
+    }
+}
+export const addProductDone = (data) => {
+    
+    return {
+        type: ACTIONS.ADD_PRODUCT_DONE,
+        data
+    }
+}
 

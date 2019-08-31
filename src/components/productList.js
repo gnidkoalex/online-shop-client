@@ -55,9 +55,12 @@ class ProductList extends Component {
   //   this.props.goToCheckout()
 
   // }
-  deleteAll=async()=>{
-   await this.props.actions.deleteAllCartitems(this.props.logedInUser.cartId)
-    this.props.actions.getCartItems(this.props.logedInUser.cartId)
+  deleteAll=()=>{
+   this.props.actions.deleteAllCartitems(this.props.logedInUser.cartId)
+   setTimeout(() => {
+     this.props.actions.getCartItems(this.props.logedInUser.cartId)
+   }, 20);
+   
   }
 
 

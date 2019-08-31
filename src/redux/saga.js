@@ -15,6 +15,10 @@ import {logOutService} from "./services";
 import {registerService} from "./services";
 import {deleleAllCartitemsService} from "./services";
 import {getProductToEditService} from "./services";
+import {updateProductService} from "./services";
+import {addProductService} from "./services";
+
+
 
 
 
@@ -130,7 +134,22 @@ function* getProductToEdit(action){
     }catch(ex){
 
     }
+}
+function* updateProduct(action){
+    try{
+        const data =yield call(updateProductService,action); // after the getProductsService "," and your payload
+        yield put(allActions.updateProductDone(data));
+    }catch(ex){
 
+    }
+}
+function* addProduct(action){
+    try{
+        const data =yield call(addProductService,action); // after the getProductsService "," and your payload
+        yield put(allActions.addProductDone(data));
+    }catch(ex){
+
+    }
 }
 
 function* GetCategories(){
@@ -185,10 +204,18 @@ function* GetProductToEdit(){
     yield takeEvery(ACTIONS.GET_PRODUCT_TO_DEIT,getProductToEdit)
 
 }
+function* UpdateProduct(){
+    yield takeEvery(ACTIONS.UPDATE_PRODUCT,updateProduct)
+
+}
+function* AddProduct(){
+    yield takeEvery(ACTIONS.ADD_PRODUCT,addProduct)
+
+}
 
 
 function* rootSaga(){
-    yield all([fork(GetProducts),fork(GetCategories),fork(GetProductsByCategory),fork(AddToCart),fork(UserLogin),fork(GetCartItems),fork(DelCartItem),fork(VerifySession),fork(LogOut),fork(Register),fork(DeleleAllCartitems),fork(GetProductToEdit)]);
+    yield all([fork(GetProducts),fork(GetCategories),fork(GetProductsByCategory),fork(AddToCart),fork(UserLogin),fork(GetCartItems),fork(DelCartItem),fork(VerifySession),fork(LogOut),fork(Register),fork(DeleleAllCartitems),fork(GetProductToEdit),fork(UpdateProduct),fork(AddProduct)]);
 }
 
 export default rootSaga;

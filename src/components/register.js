@@ -97,7 +97,7 @@ class Register extends Component {
                                 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                     <TextField id="userName" label="user name" value={this.state.userName} onChange={e => { this.setState({ userName: e.currentTarget.value }) }} />
                                 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                    <TextField id="userId" label="id" value={this.state.userId} onChange={e => { this.setState({ userId: e.currentTarget.value }) }} />
+                    <TextField id="userId" label="id" type="number"value={this.state.userId} onChange={e => { this.setState({ userId: e.currentTarget.value }) }} />
                             </Grid>
                             <Grid container spacing={0} alignItems="flex-end">
                                 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
@@ -112,13 +112,13 @@ class Register extends Component {
                         <div>
                             <Grid container spacing={0} alignItems="flex-end">
                                 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                    <TextField id="firstName" label="first name" value={this.state.firstName} onChange={e => { this.setState({ firstName: e.currentTarget.value }) }} />
+                    <TextField id="firstName" label="first name" type="text" value={this.state.firstName} onChange={e => { this.setState({ firstName: e.currentTarget.value }) }} />
                                 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                    <TextField id="lastName" label="last Name" value={this.state.lastName} onChange={e => { this.setState({ lastName: e.currentTarget.value }) }} />
+                    <TextField id="lastName" label="last Name"  type="text" value={this.state.lastName} onChange={e => { this.setState({ lastName: e.currentTarget.value }) }} />
                             </Grid>
                             <Grid container spacing={0} alignItems="flex-end">
                                 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                    <TextField id="city" label="city" value={this.state.city} onChange={e => { this.setState({ city: e.currentTarget.value }) }} />
+                    <TextField id="city" label="city"  type="text" value={this.state.city} onChange={e => { this.setState({ city: e.currentTarget.value }) }} />
                                 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                     <TextField id="adress" label="adress" value={this.state.adress} onChange={e => { this.setState({ adress: e.currentTarget.value }) }} />
                             </Grid>

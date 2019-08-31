@@ -23,6 +23,10 @@ import {
     deleteAllCartitemsDone,
     getProductToEdit,
     getProductToEditDone,
+    updateProduct,
+    updataProductDone,
+    addProduct,
+    addProductDone,
     
     
 } from "./actions";
@@ -52,5 +56,9 @@ export const allActions ={
     deleteAllCartitemsDone,
     getProductToEdit,
     getProductToEditDone,
+    updateProduct,
+    updataProductDone,
+    addProduct,
+    addProductDone,
 
 };

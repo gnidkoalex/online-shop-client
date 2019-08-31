@@ -81,7 +81,7 @@ export default function reducers (state={},action){
         }
         case ACTIONS.REGISTER_DONE:{
             return{
-                
+    
             }
         }
         case ACTIONS.DELETE_ALL_CARTITEMS_DONE:{
@@ -101,6 +101,24 @@ export default function reducers (state={},action){
             return{
                 ...state,
                 productToEdit:productToEdit
+            }
+        }
+        case ACTIONS.UPDATE_PRODUCT_DONE:{
+            
+            
+           
+
+            return{
+                ...state,
+            }
+        }
+        case ACTIONS.ADD_PRODUCT_DONE:{
+            
+            
+           
+
+            return{
+                ...state,
             }
         }
             

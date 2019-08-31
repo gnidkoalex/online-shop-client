@@ -218,5 +218,39 @@ export const getProductToEditService = async (productId) => {
 
 }
 
+export const updateProductService = async (data)=>{
+    console.log("update product service")
+    console.log(data)
+    return new Promise((resolve, reject) => {
+        axios.post(`http://localhost:2200/products/update`, data.data, {})
+        .then((response) => {
+            alert("product successfully updated")
+            resolve(response.data);
+        })
+        .catch(err => {
+            reject(err);
+
+        });
+    });
+
+}
+export const addProductService = async (data)=>{
+    console.log("update product service")
+    console.log(data)
+    return new Promise((resolve, reject) => {
+        axios
+        .post(`http://localhost:2200/products/add`, data.data, {})
+        .then((response) => {
+            alert("product added successfully ")
+            resolve(response.data);
+        })
+        .catch(err => {
+            reject(err);
+
+        });
+    });
+
+}
+
 
 

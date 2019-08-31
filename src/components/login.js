@@ -43,6 +43,7 @@ class Login extends Component {
         };
     }
     componentWillReceiveProps(nextProps) {
+    
         if(nextProps.logedInUser!={}){
             this.props.history.push("/main")
         }else if(localStorage.getItem("session")!=""){
@@ -52,6 +53,7 @@ class Login extends Component {
 
     }
     componentDidMount() {
+       
         
 
     }
@@ -125,7 +127,8 @@ class Login extends Component {
 }
 function mapStateToProps(state) {
     return {
-        logedInUser:state.logedInUser||{}
+        logedInUser:state.logedInUser||{},
+
     }
 }
 
@@ -136,6 +139,8 @@ function mapDispatchToProps(dispatch) {
                 // getProducts:allActions.getProducts
                 // addToCart: allActions.addToCart
                 userLogin:allActions.userLogin
+                
+
 
             },
             dispatch

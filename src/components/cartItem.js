@@ -14,6 +14,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from "@material-ui/core/TextField";
+import { Container } from 'react-bootstrap';
 
 
 
@@ -21,10 +22,14 @@ const styles = {
   card: {
     maxWidth: 250,
     minWidth: 100,
+    maxHeight:100,
+    minHeight:100,
    
   },
   media: {
-    height: 140,
+    height: 80,
+    width:100,
+    margin:"auto"
   },
   textField: {
 
@@ -81,53 +86,48 @@ class CartItem extends Component {
     const { classes } = this.props;
     return (
       
-        <div>
-             <Card className={classes.card}>
-                <CardActionArea>
-                  {/* <CardMedia
+        <div className="Container">
+         
+             {/* <Card className={classes.card}>
+                <CardActionArea> */}
+                  <CardMedia
                     className={classes.media}
-                    image="C:/Users/ASUS/Desktop/pics/bannana.jpg"
-                    title="bannana"
+                    image={this.props.id.image}
+                   
 
 
-                  /> */}
-                  <CardContent>
-                    <Typography component="p">
-                      {this.props.id.productName}
-                    </Typography>
-                    <Typography component="p">
-                      {this.props.amount}
-                    </Typography>
+                  />
+                      {this.props.amount} X {this.props.id.productName}
                     <Button size="small" color="primary" onClick={()=>{
                         console.log(this.props.id)
                         console.log(this.props.logedInUser.cartId)
-                        // this.props.actions.delCartItem(this.props.logedInUser.cartId,this.props.id)
-                        this.deleteItem()
-                        
-                    // if(this.state.productAmount>=1){
                       
-                    //   this.props.actions.addToCart(this.props.id,this.state.productAmount,this.props.logedInUser.cartId)
-                    // }else{
-                    //   alert("you must have at least one to add it")
-                    // }
-                    // this.addToCart(this.props.id,this.state.productAmount)
+                        this.deleteItem()
                   }}>
-                  
+            
                     x
                   </Button>
+                  {/* <CardContent>
+                    <Typography component="p">
+                
+                    </Typography>
+                    <Typography component="p">
+                      
+                    </Typography>
+               
 
-                  </CardContent>
-                </CardActionArea>
+                  </CardContent> */}
+                {/* </CardActionArea>
                 <CardActions>
                   
                 </CardActions>
-              </Card>
+              </Card> */}
 
             
 
          
-         
-        </div>
+              </div>
+    
       
     );
   }
