@@ -121,6 +121,16 @@ export default function reducers (state={},action){
                 ...state,
             }
         }
+
+        case ACTIONS.ORDER_DONE:{
+            
+            
+           
+
+            return{
+                ...state,
+            }
+        }
             
             
     

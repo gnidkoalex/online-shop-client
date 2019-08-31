@@ -66,12 +66,41 @@ class checkOut extends Component {
 
         })
     }
+    calcTotal=()=>{
+        let chekoutPrice = 0;
+        this.props.cartItems.map((item) => {
+            chekoutPrice += item.totalPrice;
+        })
+      return chekoutPrice
+    }
     confirmAndPay=()=>{
         if(this.props.cartItems.length==0){
             alert("your cart is empty")
 
         }else{
-        alert("your order has been successfuly complited")
+        let chekoutPrice =this.calcTotal()
+        if(this.props.cartItems&&chekoutPrice!=0&&this.state.city&&this.state.adress&&this.state.creditCard&&this.state.date){
+        let order={}
+        order.userId=this.props.logedInUser.userId
+        order.cartId= this.props.logedInUser.cartId
+        order.cartItems=this.props.cartItems
+        order.price=chekoutPrice
+        order.city=this.state.city
+        order.adress=this.state.adress
+        order.creditCard=this.state.creditCard
+        order.date=this.state.date
+        this.props.actions.order(order)
+        this.props.actions.deleteAllCartitems(this.props.logedInUser.cartId)
+
+        setTimeout(() => {
+            
+            this.props.actions.getCartItems(this.props.logedInUser.cartId)
+            alert("you  successfully complited your order ")
+            
+        }, 20);
+      
+        }
+
         }
     }
 
@@ -161,7 +190,11 @@ function mapDispatchToProps(dispatch) {
             {
                 // getProducts:allActions.getProducts
                 // addToCart: allActions.addToCart
-                userLogin: allActions.userLogin
+                userLogin: allActions.userLogin,
+                order: allActions.order,
+                deleteAllCartitems: allActions.deleteAllCartitems,
+                getCartItems:allActions.getCartItems
+                
 
             },
             dispatch

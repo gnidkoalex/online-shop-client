@@ -27,6 +27,8 @@ import {
     updataProductDone,
     addProduct,
     addProductDone,
+    order,
+    orderDone,
     
     
 } from "./actions";
@@ -60,5 +62,7 @@ export const allActions ={
     updataProductDone,
     addProduct,
     addProductDone,
+    order,
+    orderDone,
 
 };

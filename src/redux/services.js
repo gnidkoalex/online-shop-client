@@ -251,6 +251,25 @@ export const addProductService = async (data)=>{
     });
 
 }
+export const orderService = async (data)=>{
+    console.log("order service")
+    console.log(data.data)
+    return new Promise((resolve, reject) => {
+        axios
+        .post(`http://localhost:2200/cart/order`, data.data, {})
+        .then((response) => {
+            // alert("you  successfully complited your order ")
+            resolve(response.data);
+        })
+        .catch(err => {
+            reject(err);
+
+        });
+    });
+
+}
+
+
 
 
 

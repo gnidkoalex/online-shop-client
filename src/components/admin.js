@@ -122,9 +122,7 @@ class Admin extends Component {
           <Navbar.Brand>
             <Link to="/main/checkout"> checkout</Link>
           </Navbar.Brand> */}
-          <button onClick={() => {
-            console.log(this.state)
-          }}>state</button>
+          
 
 
         </div>

@@ -190,4 +190,17 @@ export const addProductDone = (data) => {
         data
     }
 }
+export const order=(data)=>{
+    return{
+        type:ACTIONS.ORDER,
+        data
+    }
+}
+export const orderDone = (data) => {
+    
+    return {
+        type: ACTIONS.ORDER_DONE,
+        data
+    }
+}
 
