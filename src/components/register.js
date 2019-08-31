@@ -52,7 +52,6 @@ class Register extends Component {
         if (nextProps.logedInUser != {}) {
             this.props.history.push("/main")
         } else if (localStorage.getItem("session") != "") {
-            console.log("need this")
 
         }
 
@@ -190,8 +189,6 @@ function mapDispatchToProps(dispatch) {
     return {
         actions: bindActionCreators(
             {
-                // getProducts:allActions.getProducts
-                // addToCart: allActions.addToCart
                 userLogin: allActions.userLogin,
                 register: allActions.register
 

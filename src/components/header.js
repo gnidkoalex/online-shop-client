@@ -44,21 +44,6 @@ class Header extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-
-    // console.log("im next from header")
-    // console.log(nextProps)
-    // if(nextProps.logedInUser.session){
-    //   //steel logrd in 
-    // }else{
-    //   this.props.history.push("/")
-
-    // }
-  }
-  componentDidMount() {
-
-  }
-
 
 
   render() {
@@ -69,7 +54,6 @@ class Header extends Component {
 
 
         <Navbar>
-          {/* <Navbar.Header> */}
           <Navbar.Brand>
             <Link to="/main/Meat and fish"> Meat and fish</Link>
           </Navbar.Brand>
@@ -98,12 +82,6 @@ class Header extends Component {
             let session = this.props.logedInUser.session
             this.props.actions.logOut(session)
             this.props.goToLogin()
-
-
-
-
-
-
 
           }}>log out</Button>
 
@@ -144,8 +122,8 @@ function mapDispatchToProps(dispatch) {
 
 export default withStyles(styles)(
   connect(
-    mapStateToProps,//read from state
-    //pass to state
+    mapStateToProps,
+  
     mapDispatchToProps
   )(Header)
 );

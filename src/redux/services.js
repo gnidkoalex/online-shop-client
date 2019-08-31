@@ -132,8 +132,6 @@ export const verifySessionService = async (data) => {
     return new Promise((resolve, reject) => {
         axios.post(`${mainUrl}users/verify`, { data })
             .then((response) => {
-                console.log("im response")
-                console.log(response.data)
                 let currUser = {}
                 currUser.name = response.data.name
                 currUser.userId = response.data.userId
@@ -144,8 +142,7 @@ export const verifySessionService = async (data) => {
 
                 axios.post(`${mainUrl}cart/findCartByUser`, { customerId })
                     .then((response2) => {
-                        console.log("im respone 2")
-                        console.log( response2.data[0]._id)
+
                         currUser.cartId = response2.data[0]._id
                         resolve(currUser);
                     })
@@ -172,8 +169,7 @@ export const logOutService = async (data) => {
 
 }
 export const registerService = async (data) => {
-    console.log("register service")
-    console.log(data)
+
     return new Promise((resolve, reject) => {
         axios.post(`${mainUrl}users/create`, { data })
             .then((response) => {
@@ -187,8 +183,7 @@ export const registerService = async (data) => {
 
 }
 export const deleleAllCartitemsService = async (data) => {
-    console.log("deleleAllCartitemsService service")
-    console.log(data)
+
     return new Promise((resolve, reject) => {
         axios.post(`${mainUrl}cart/deleteAllCartItems`, { data })
             .then((response) => {
@@ -206,8 +201,7 @@ export const getProductToEditService = async (productId) => {
     return new Promise((resolve, reject) => {
         axios.get(`${mainUrl}products/edit/${productId.productId}`)
             .then((response) => {
-                console.error("=-------------------------------------------------------")
-                console.log(response.data)
+
                 resolve(response.data);
             })
             .catch(err => {
@@ -219,8 +213,7 @@ export const getProductToEditService = async (productId) => {
 }
 
 export const updateProductService = async (data)=>{
-    console.log("update product service")
-    console.log(data)
+
     return new Promise((resolve, reject) => {
         axios.post(`http://localhost:2200/products/update`, data.data, {})
         .then((response) => {
@@ -235,8 +228,7 @@ export const updateProductService = async (data)=>{
 
 }
 export const addProductService = async (data)=>{
-    console.log("update product service")
-    console.log(data)
+
     return new Promise((resolve, reject) => {
         axios
         .post(`http://localhost:2200/products/add`, data.data, {})
@@ -252,13 +244,12 @@ export const addProductService = async (data)=>{
 
 }
 export const orderService = async (data)=>{
-    console.log("order service")
-    console.log(data.data)
+
     return new Promise((resolve, reject) => {
         axios
         .post(`http://localhost:2200/cart/order`, data.data, {})
         .then((response) => {
-            // alert("you  successfully complited your order ")
+
             resolve(response.data);
         })
         .catch(err => {

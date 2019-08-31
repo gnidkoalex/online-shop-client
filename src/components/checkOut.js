@@ -45,9 +45,7 @@ class checkOut extends Component {
 
         };
     }
-    componentWillReceiveProps() {
 
-    }
     componentDidMount() {
         if(this.state.view != 0){
             this.setState({
@@ -55,11 +53,8 @@ class checkOut extends Component {
             })
         }
 
-
     }
-    componentDidUpdate() {
 
-    }
     changeView=()=>{
         this.setState({
             view:"shipping"
@@ -80,25 +75,26 @@ class checkOut extends Component {
         }else{
         let chekoutPrice =this.calcTotal()
         if(this.props.cartItems&&chekoutPrice!=0&&this.state.city&&this.state.adress&&this.state.creditCard&&this.state.date){
-        let order={}
-        order.userId=this.props.logedInUser.userId
-        order.cartId= this.props.logedInUser.cartId
-        order.cartItems=this.props.cartItems
-        order.price=chekoutPrice
-        order.city=this.state.city
-        order.adress=this.state.adress
-        order.creditCard=this.state.creditCard
-        order.date=this.state.date
-        this.props.actions.order(order)
-        this.props.actions.deleteAllCartitems(this.props.logedInUser.cartId)
+            let order={}
+            order.userId=this.props.logedInUser.userId
+            order.cartId= this.props.logedInUser.cartId
+            order.cartItems=this.props.cartItems
+            order.price=chekoutPrice
+            order.city=this.state.city
+            order.adress=this.state.adress
+            order.creditCard=this.state.creditCard
+            order.date=this.state.date
+            this.props.actions.order(order)
+            this.props.actions.deleteAllCartitems(this.props.logedInUser.cartId)
 
-        setTimeout(() => {
+            setTimeout(() => {
             
             this.props.actions.getCartItems(this.props.logedInUser.cartId)
             alert("you  successfully complited your order ")
             
-        }, 20);
-      
+            }, 20);
+        }else{
+            alert("shipping ditails are missing")
         }
 
         }
@@ -156,19 +152,6 @@ class checkOut extends Component {
    
 
                 )}
-             
-
-
-
-
-
-
-
-
-
-
-
-
 
             </div>
 
@@ -188,8 +171,6 @@ function mapDispatchToProps(dispatch) {
     return {
         actions: bindActionCreators(
             {
-                // getProducts:allActions.getProducts
-                // addToCart: allActions.addToCart
                 userLogin: allActions.userLogin,
                 order: allActions.order,
                 deleteAllCartitems: allActions.deleteAllCartitems,

@@ -46,18 +46,7 @@ class Login extends Component {
     
         if(nextProps.logedInUser!={}){
             this.props.history.push("/main")
-        }else if(localStorage.getItem("session")!=""){
-            console.log("need this")
-
         }
-
-    }
-    componentDidMount() {
-       
-        
-
-    }
-    componentDidUpdate() {
 
     }
 
@@ -94,7 +83,7 @@ class Login extends Component {
                         <Button size="small" color="primary" onClick={()=>{
                     if(this.state.userName&&this.state.password){
                       this.props.actions.userLogin(this.state.userName,this.state.password);
-                    //   this.props.history.push("/main")
+                   
                     }else{
                       alert("missing params")
                     }
@@ -136,11 +125,9 @@ function mapDispatchToProps(dispatch) {
     return {
         actions: bindActionCreators(
             {
-                // getProducts:allActions.getProducts
-                // addToCart: allActions.addToCart
-                userLogin:allActions.userLogin
-                
 
+                userLogin:allActions.userLogin
+            
 
             },
             dispatch

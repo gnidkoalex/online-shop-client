@@ -28,20 +28,7 @@ class ProductList extends Component {
     this.handleInitialCartItems()
 
   }
-  componentWillReceiveProps(nextProps) {
-    // console.log("next props hhh")
-    // console.log(nextProps.cartItems.length)
-    
 
-    
-   
-  }
-  componentDidUpdate() {
-    
-  
-    
-    
-  }
   handleInitialCartItems = () => {
     if (this.props.logedInUser.cartId) {
       console.log(this.props.logedInUser.cartId)
@@ -49,12 +36,7 @@ class ProductList extends Component {
     }
 
   }
-  // handleCartItems = (nextCartItems)=>{
-  // }
-  // checkot=()=>{
-  //   this.props.goToCheckout()
 
-  // }
   deleteAll=()=>{
    this.props.actions.deleteAllCartitems(this.props.logedInUser.cartId)
    setTimeout(() => {

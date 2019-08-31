@@ -56,17 +56,9 @@ class AdminItem extends Component {
 
     };
   }
-  //   componentWillReceiveProps(nextProps){
-  //     console.log("im next props")
-  //     console.log(nextProps)
-
-  //   }
   componentDidMount() {
     if (this.props.item) {
-      console.log(this.props.item)
-
       let currentCategory = this.categoryIdToName(this.props.item.categoryId[0])
-      console.log(currentCategory[0])
       this.setState({
         productName: this.props.item.productName,
         price: this.props.item.price,
@@ -126,7 +118,6 @@ class AdminItem extends Component {
       return category.categoryName == name
 
     })
-    console.log(categoryy)
     return categoryy[0]._id
 
   }
@@ -198,24 +189,6 @@ class AdminItem extends Component {
 
   }
 
-  //   handleAmountChange = e => {
-  //     let amount = e.target.value
-  //     this.setState(prevState => ({
-  //       productAmount:amount
-
-
-
-  //     }));
-
-  //   }
-  // addToCart=(id,amount)=>{
-  //   if(amount>=1){
-
-  //   }
-
-
-  // }
-
   render() {
     const { classes } = this.props;
     return (
@@ -231,14 +204,6 @@ class AdminItem extends Component {
 
         <Card className={classes.card}>
           <CardActionArea>
-            {console.log(this.props.item)}
-            {/* <CardMedia
-                    className={classes.media}
-                    image="C:/Users/ASUS/Desktop/pics/bannana.jpg"
-                    title="bannana"
-
-
-                  /> */}
             <CardContent>
               <span>Product name:</span>
               <TextField id="productName" placeholder="product name" type="string" value={this.state.productName} onChange={e => { this.setState({ productName: e.currentTarget.value }) }} />
@@ -248,10 +213,6 @@ class AdminItem extends Component {
               <Select
                 value={this.state.category}
                 onChange={this.categoryHandle}
-              // inputProps={{
-              //   name: 'age',
-              //   id: 'age-simple',
-              // }}
 
               >
                 {this.props.categories.map((category) => {
@@ -261,9 +222,7 @@ class AdminItem extends Component {
 
 
                 })}
-                {/* <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem> */}
+
               </Select>
               <br /><br />
               {this.state.addingItem == false && (
@@ -276,12 +235,7 @@ class AdminItem extends Component {
                   />
                 </div>
               )}
-              {/* <span>change image</span>
-              <Checkbox
 
-                onChange={this.changeImage}
-                color="primary"
-              /> */}
               {this.state.changeImage == true && (
                 <div>image:
               <input type="file" placeholder={this.state.image} onChange={this.handleFile} />
@@ -294,21 +248,6 @@ class AdminItem extends Component {
                 </div>
               )}
 
-
-
-              {/* <Typography component="p">
-                      {this.props.item.price}
-                    </Typography>
-                    <Typography component="p">
-                      {this.props.amount}
-                    </Typography> */}
-
-              {/* <Button size="small" color="primary" onClick={() => {
-                console.log(this.state)
-              }}>
-
-                save
-                  </Button> */}
               {this.state.addingItem == false && (
                 <Button size="small" color="primary" onClick={this.updateProduct}>
 
@@ -353,7 +292,6 @@ function mapDispatchToProps(dispatch) {
 
     actions: bindActionCreators(
       {
-        // getProducts:allActions.getProducts
         addToCart: allActions.addToCart,
         delCartItem: allActions.delCartItem,
         getCartItems: allActions.getCartItems,

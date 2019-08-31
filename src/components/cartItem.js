@@ -46,17 +46,7 @@ class CartItem extends Component {
      
     };
   }
-//   componentWillReceiveProps(nextProps){
-//     console.log("im next props")
-//     console.log(nextProps)
-    
-//   }
-  componentDidMount() {
 
-  }
-  componentDidUpdate(){
-   
-  }
   deleteItem= ()=>{
      this.props.actions.delCartItem(this.props.logedInUser.cartId,this.props.id);
     setTimeout(() => {
@@ -64,38 +54,17 @@ class CartItem extends Component {
     }, 20);
    
   }
-//   handleAmountChange = e => {
-//     let amount = e.target.value
-//     this.setState(prevState => ({
-//       productAmount:amount
-
-    
-      
-//     }));
-
-//   }
-  // addToCart=(id,amount)=>{
-  //   if(amount>=1){
-      
-  //   }
-      
-
-  // }
 
   render() {
     const { classes } = this.props;
     return (
       
         <div className="Container">
-         
-             {/* <Card className={classes.card}>
-                <CardActionArea> */}
+ 
                   <CardMedia
                     className={classes.media}
                     image={this.props.id.image}
                    
-
-
                   />
                       {this.props.amount} X {this.props.id.productName}
                     <Button size="small" color="primary" onClick={()=>{
@@ -107,25 +76,7 @@ class CartItem extends Component {
             
                     x
                   </Button>
-                  {/* <CardContent>
-                    <Typography component="p">
-                
-                    </Typography>
-                    <Typography component="p">
-                      
-                    </Typography>
-               
 
-                  </CardContent> */}
-                {/* </CardActionArea>
-                <CardActions>
-                  
-                </CardActions>
-              </Card> */}
-
-            
-
-         
               </div>
     
       
@@ -144,7 +95,6 @@ function mapDispatchToProps(dispatch) {
     
     actions: bindActionCreators(
       {
-        // getProducts:allActions.getProducts
         addToCart:allActions.addToCart,
         delCartItem:allActions.delCartItem,
         getCartItems:allActions.getCartItems

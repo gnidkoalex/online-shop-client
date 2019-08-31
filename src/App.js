@@ -41,16 +41,10 @@ class App extends Component {
     
   }
   componentDidMount() {
-    // this.props.actions.getProducts();
-    // this.props.actions.getCategories();
-    if(localStorage.getItem("session")){
-      //verify
-    }else{
-      
-    }
+   
   }
   componentDidUpdate() {
-    console.log(this.props.products);
+  
   }
 
   render() {

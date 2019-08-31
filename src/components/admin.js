@@ -32,38 +32,21 @@ class Admin extends Component {
 
   }
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps)
     if (nextProps.productToEdit) {
       this.setState({
         productToEdit: nextProps.productToEdit
       })
     }
-    // console.log("next props hhh")
-    // console.log(nextProps.cartItems.length)
-
-
-
 
   }
-  componentDidUpdate() {
 
-
-
-
-  }
   handleInitialCartItems = () => {
     if (this.props.logedInUser.cartId) {
-      console.log(this.props.logedInUser.cartId)
       this.props.actions.getCartItems(this.props.logedInUser.cartId)
     }
 
   }
-  // handleCartItems = (nextCartItems)=>{
-  // }
-  // checkot=()=>{
-  //   this.props.goToCheckout()
 
-  // }
   deleteAll = async () => {
     await this.props.actions.deleteAllCartitems(this.props.logedInUser.cartId)
     this.props.actions.getCartItems(this.props.logedInUser.cartId)
@@ -101,36 +84,9 @@ class Admin extends Component {
             <AdminItem/>
           )}
 
-          
-
           <Button onClick={this.addProduct}>add new product</Button>
 
-
-
-
-
-
-
-
-
-
-
-
-          {/* <Button onClick={()=>{
-           this.deleteAll()
-          }}>delete all</Button>
-          <Navbar.Brand>
-            <Link to="/main/checkout"> checkout</Link>
-          </Navbar.Brand> */}
-          
-
-
         </div>
-        {/* total price:{totalPrice} */}
-
-
-
-
       </div>
 
     );

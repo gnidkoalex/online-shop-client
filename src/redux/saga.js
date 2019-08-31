@@ -21,18 +21,9 @@ import {orderService} from "./services";
 
 
 
-
-
-
-
-
-
-
-// import { getCategories } from "./actions";
-
 function* getProducts(){
     try{
-        const products =yield call(getProductsService); // after the getProductsService "," and your payload
+        const products =yield call(getProductsService); 
         yield put(allActions.getProductsDone(products));
     }catch(ex){
 
@@ -41,7 +32,7 @@ function* getProducts(){
 }
 function* getProductsByCategory(action){
     try{
-        const productsByCategory =yield call(getProductsByCategoryService,action.categoryId); // after the getProductsService "," and your payload
+        const productsByCategory =yield call(getProductsByCategoryService,action.categoryId); 
         yield put(allActions.getProductsByCategoryDone(productsByCategory));
     }catch(ex){
 
@@ -51,7 +42,7 @@ function* getProductsByCategory(action){
 
 function* getCategories(){
     try{
-        const categories =yield call(getCategoriesService); // after the getProductsService "," and your payload
+        const categories =yield call(getCategoriesService); 
         yield put(allActions.getCategoriesDone(categories));
     }catch(ex){
 
@@ -60,7 +51,7 @@ function* getCategories(){
 }
 function* addToCart(action){
     try{
-        const productTocart =yield call(addToCartService,action); // after the getProductsService "," and your payload
+        const productTocart =yield call(addToCartService,action); 
         yield put(allActions.addToCartDone(productTocart));
     }catch(ex){
 
@@ -70,7 +61,7 @@ function* addToCart(action){
 function* userLogin(action){
     
     try{
-        const user =yield call(userLoginService,action); // after the getProductsService "," and your payload
+        const user =yield call(userLoginService,action); 
         yield put(allActions.userLoginDone(user));
     }catch(ex){
         alert("user name and password doenst match")
@@ -80,7 +71,7 @@ function* userLogin(action){
 }
 function* getCartItems(action){
     try{
-        const cartItems =yield call(getCartItemsService,action); // after the getProductsService "," and your payload
+        const cartItems =yield call(getCartItemsService,action); 
         yield put(allActions.getCartItemsDone(cartItems));
     }catch(ex){
 
@@ -89,7 +80,7 @@ function* getCartItems(action){
 }
 function* delCartItem(action){
     try{
-        const cartItems =yield call(delCartItemService,action); // after the getProductsService "," and your payload
+        const cartItems =yield call(delCartItemService,action); 
         yield put(allActions.delCartItemDone(cartItems));
     }catch(ex){
 
@@ -98,7 +89,7 @@ function* delCartItem(action){
 }
 function* verifySession(action){
     try{
-        const user =yield call(verifySessionService,action); // after the getProductsService "," and your payload
+        const user =yield call(verifySessionService,action);
         yield put(allActions.userLoginDone(user));
     }catch(ex){
 
@@ -107,7 +98,7 @@ function* verifySession(action){
 }
 function* logOut(action){
     try{
-        const data =yield call(logOutService,action); // after the getProductsService "," and your payload
+        const data =yield call(logOutService,action);
         yield put(allActions.logOutDone(data));
     }catch(ex){
 
@@ -115,7 +106,7 @@ function* logOut(action){
 }
 function* register(action){ 
     try{
-        const data =yield call(registerService,action); // after the getProductsService "," and your payload
+        const data =yield call(registerService,action); 
         yield put(allActions.registerDone(data));
     }catch(ex){
 
@@ -124,7 +115,7 @@ function* register(action){
 }
 function* deleleAllCartitems(action){
     try{
-        const data =yield call(deleleAllCartitemsService,action); // after the getProductsService "," and your payload
+        const data =yield call(deleleAllCartitemsService,action); 
         yield put(allActions.deleleAllCartitemsDone(data));
     }catch(ex){
 
@@ -132,7 +123,7 @@ function* deleleAllCartitems(action){
 }
 function* getProductToEdit(action){
     try{
-        const data =yield call(getProductToEditService,action); // after the getProductsService "," and your payload
+        const data =yield call(getProductToEditService,action); 
         yield put(allActions.getProductToEditDone(data));
     }catch(ex){
 
@@ -140,7 +131,7 @@ function* getProductToEdit(action){
 }
 function* updateProduct(action){
     try{
-        const data =yield call(updateProductService,action); // after the getProductsService "," and your payload
+        const data =yield call(updateProductService,action); 
         yield put(allActions.updateProductDone(data));
     }catch(ex){
 
@@ -148,7 +139,7 @@ function* updateProduct(action){
 }
 function* addProduct(action){
     try{
-        const data =yield call(addProductService,action); // after the getProductsService "," and your payload
+        const data =yield call(addProductService,action); 
         yield put(allActions.addProductDone(data));
     }catch(ex){
 
@@ -156,7 +147,7 @@ function* addProduct(action){
 }
 function* order(action){
     try{
-        const data =yield call(orderService,action); // after the getProductsService "," and your payload
+        const data =yield call(orderService,action); 
         yield put(allActions.orderDone(data));
     }catch(ex){
 

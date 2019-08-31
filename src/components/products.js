@@ -38,14 +38,9 @@ class Products extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // categoryName: this.props.match.params.name,
       categoryName: "somthing",
       search: [],
       notFound: false
-
-      // productAmount: 1,
-      // currProduct:{}
-
     };
 
   }
@@ -57,12 +52,10 @@ class Products extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps.match.params.name)
     if (nextProps.match.params.name == "checkout") {
       this.setState({
         checkout: 1
       })
-      console.log("checkout")
     } else {
       this.setState({
         checkout: 0
@@ -78,7 +71,6 @@ class Products extends Component {
 
   getCategoryId(categoryName) {
     let categoryNeded = categoryName
-    // let categoryNeded= categoryName.match.params.name
     let categoryId = this.props.categories.filter(function (category) {
       return category.categoryName.toLowerCase() == categoryNeded.toLowerCase()
     });
@@ -90,12 +82,9 @@ class Products extends Component {
   }
 
   handeleCategoryChange = (category) => {
-    console.log(category)
     if (category != "" && category != undefined && category != null && category.toLowerCase() != this.state.categoryName.toLowerCase()) {
       this.getCategoryId(category.toLowerCase())
       this.setState({ categoryName: category.toLowerCase() })
-
-
     }
 
   }
@@ -123,20 +112,6 @@ class Products extends Component {
 
 
   }
-  // handleAmountChange = e => {
-  //   let amount = e.target.value
-  //   console.log(e)
-  //   this.setState(prevState => ({
-  //     productAmount:amount
-
-
-  //   }));
-
-  // }
-
-
-
-
 
 
   render() {
@@ -163,7 +138,6 @@ class Products extends Component {
               <div className="row">
                 {this.state.search.length == 0 && this.state.notFound == false && (
                   this.props.productsByCategory.map((product, index) => {
-                    console.log(product)
                     return (
                       
                       <div>

@@ -87,8 +87,6 @@ export const getCartItems = (cartId) => {
     }
 }
 export const getCartItemsDone = (data) => {
-    console.log("inside  done")
-    console.log(data)
     return {
         type: ACTIONS.GET_CART_ITEMS_DONE,
         data
@@ -129,7 +127,6 @@ export const logOutDone = (data) => {
     }
 }
 export const register=(user)=>{
-    console.log(user)
     return{
         type:ACTIONS.REGISTER,
         user

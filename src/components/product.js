@@ -47,21 +47,7 @@ class Product extends Component {
 
     };
   }
-  // componentWillReceiveProps(nextProps){
-  //   console.log("im next props")
-  //   console.log(nextProps)
-  //   this.setState({
-  //     cartItemsTry:nextProps.cartItems
 
-  //   })
-
-  // }
-  componentDidMount() {
-
-  }
-  componentDidUpdate() {
-
-  }
   handleAmountChange = e => {
     let amount = e.target.value
     this.setState(prevState => ({
@@ -119,7 +105,6 @@ class Product extends Component {
                   } else {
                     alert("you must have at least one to add it")
                   }
-                  // this.addToCart(this.props.id,this.state.productAmount)
                 }}>
 
                   add
@@ -157,7 +142,6 @@ function mapDispatchToProps(dispatch) {
 
     actions: bindActionCreators(
       {
-        // getProducts:allActions.getProducts
         addToCart: allActions.addToCart,
         getCartItems: allActions.getCartItems,
         getProductToEdit: allActions.getProductToEdit,

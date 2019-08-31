@@ -48,18 +48,13 @@ class Main extends Component {
     if (this.props.logedInUser.cartId) {
       this.props.actions.getProducts();
       this.props.actions.getCategories();
-      console.log("both")
-
     } else if (session) {
-      console.log("only")
       this.props.actions.getProducts();
       this.props.actions.getCategories();
       this.afterRefresh(session)
     }
     else {
-      console.log("none")
       this.props.history.push("/")
-
     }
 
   }
@@ -103,7 +98,6 @@ class Main extends Component {
       <BrowserRouter>
 
         <div className="App">
-          {/* {!this.props.logedInUser&&this.props.history.push("/")} */}
           <Grid container spacing={24}>
 
             <Grid item xs={3}>
